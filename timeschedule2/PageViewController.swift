@@ -9,7 +9,7 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    let date: Date
+//    let date: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,24 +35,24 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        guard let index = contentVCs.index(of: viewController), index != NSNotFound else { return nil }
-            let nextIndex = index + 1
-            if index == 0 {
-                if let nextVC = getSecond() as? GraphViewController {
-                    nextVC.received = nextIndex
-                    return nextVC
-                }
-                return nil
-            } else if index == 1 {
-                if let nextVC = getThird() as? NyuryokuViewController {
-                    nextVC.received = nextIndex
-                    return nextVC
-                }
+//        guard let index = contentVCs.index(of: viewController), index != NSNotFound else { return nil }
+//            let nextIndex = index + 1
+//            if index == 0 {
+//                if let nextVC = getSecond() as? GraphViewController {
+//                    nextVC.received = nextIndex
+//                    return nextVC
+//                }
+//                return nil
+//            } else if index == 1 {
+//                if let nextVC = getThird() as? NyuryokuViewController {
+//                    nextVC.received = nextIndex
+//                    return nextVC
+//                }
                 return nil
         
         if viewController.isKind(of: NyuryokuViewController.self) {
-          let nextVC = getSecond() as? GraphViewController
-            nextVC.recieved = date
+//          let nextVC = getSecond() as? GraphViewController
+//            nextVC.recieved = date
             return getSecond()
         }
 //        else if viewController.isKind(of: GraphViewController.self) {
@@ -70,8 +70,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 //                    return getSecond()
 //                } else
         if viewController.isKind(of: GraphViewController.self){
-            let nextVC = getThird() as? NyuryokuViewController
-            nextVC.recieved = date
+//            let nextVC = getThird() as? NyuryokuViewController
+//            nextVC.recieved = date
             return getThird()
         }else{
             return nil
@@ -106,3 +106,4 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
      // Pass the selected object to the new view controller.
      }
      */
+    }

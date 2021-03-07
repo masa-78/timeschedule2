@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56EBA6AAAC4C6A9A75BE41A2 /* Pods_timeschedule2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B48CA2C52161016E4A1F89 /* Pods_timeschedule2.framework */; };
 		F17F401F25F4A31F008DF6AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F401E25F4A31F008DF6AB /* AppDelegate.swift */; };
 		F17F402125F4A31F008DF6AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F402025F4A31F008DF6AB /* SceneDelegate.swift */; };
 		F17F402325F4A31F008DF6AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F402225F4A31F008DF6AB /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 		F17F406925F4A603008DF6AB /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F406725F4A603008DF6AB /* CustomTableViewCell.swift */; };
 		F17F406A25F4A603008DF6AB /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F406825F4A603008DF6AB /* CustomTableViewCell.xib */; };
 		F17F406F25F4A69B008DF6AB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F406E25F4A69B008DF6AB /* PageViewController.swift */; };
+		F17F407D25F4B942008DF6AB /* time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F407C25F4B942008DF6AB /* time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24B48CA2C52161016E4A1F89 /* Pods_timeschedule2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_timeschedule2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C49184580E140421AC0AC4F /* Pods-timeschedule2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeschedule2.debug.xcconfig"; path = "Target Support Files/Pods-timeschedule2/Pods-timeschedule2.debug.xcconfig"; sourceTree = "<group>"; };
+		9DD07E197D5730309F050F32 /* Pods-timeschedule2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeschedule2.release.xcconfig"; path = "Target Support Files/Pods-timeschedule2/Pods-timeschedule2.release.xcconfig"; sourceTree = "<group>"; };
 		F17F401B25F4A31F008DF6AB /* timeschedule2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timeschedule2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F401E25F4A31F008DF6AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F17F402025F4A31F008DF6AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		F17F406725F4A603008DF6AB /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F17F406825F4A603008DF6AB /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		F17F406E25F4A69B008DF6AB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		F17F407C25F4B942008DF6AB /* time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56EBA6AAAC4C6A9A75BE41A2 /* Pods_timeschedule2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13EFF70A2096343DA903A291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24B48CA2C52161016E4A1F89 /* Pods_timeschedule2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80844568E06569335646841D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C49184580E140421AC0AC4F /* Pods-timeschedule2.debug.xcconfig */,
+				9DD07E197D5730309F050F32 /* Pods-timeschedule2.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F17F401225F4A31F008DF6AB = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +123,8 @@
 				F17F403425F4A320008DF6AB /* timeschedule2Tests */,
 				F17F403F25F4A320008DF6AB /* timeschedule2UITests */,
 				F17F401C25F4A31F008DF6AB /* Products */,
+				80844568E06569335646841D /* Pods */,
+				13EFF70A2096343DA903A291 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +144,7 @@
 				F17F401E25F4A31F008DF6AB /* AppDelegate.swift */,
 				F17F402025F4A31F008DF6AB /* SceneDelegate.swift */,
 				F17F402225F4A31F008DF6AB /* ViewController.swift */,
+				F17F407C25F4B942008DF6AB /* time.swift */,
 				F17F405125F4A49D008DF6AB /* TableViewCell.swift */,
 				F17F405225F4A49D008DF6AB /* TableViewCell.xib */,
 				F17F405825F4A564008DF6AB /* GraphViewController.swift */,
@@ -159,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F17F404525F4A320008DF6AB /* Build configuration list for PBXNativeTarget "timeschedule2" */;
 			buildPhases = (
+				CAE701CC165C5455EE4A96B5 /* [CP] Check Pods Manifest.lock */,
 				F17F401725F4A31F008DF6AB /* Sources */,
 				F17F401825F4A31F008DF6AB /* Frameworks */,
 				F17F401925F4A31F008DF6AB /* Resources */,
+				5C354D188280B83652860F35 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -279,6 +308,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5C354D188280B83652860F35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-timeschedule2/Pods-timeschedule2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-timeschedule2/Pods-timeschedule2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-timeschedule2/Pods-timeschedule2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAE701CC165C5455EE4A96B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-timeschedule2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F17F401725F4A31F008DF6AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -292,6 +363,7 @@
 				F17F401F25F4A31F008DF6AB /* AppDelegate.swift in Sources */,
 				F17F406F25F4A69B008DF6AB /* PageViewController.swift in Sources */,
 				F17F406325F4A5D1008DF6AB /* NyuryokuViewController.swift in Sources */,
+				F17F407D25F4B942008DF6AB /* time.swift in Sources */,
 				F17F402125F4A31F008DF6AB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +537,7 @@
 		};
 		F17F404625F4A320008DF6AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C49184580E140421AC0AC4F /* Pods-timeschedule2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -483,6 +556,7 @@
 		};
 		F17F404725F4A320008DF6AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DD07E197D5730309F050F32 /* Pods-timeschedule2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
