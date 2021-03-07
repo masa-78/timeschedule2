@@ -15,6 +15,14 @@
 		F17F402B25F4A320008DF6AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F17F402925F4A320008DF6AB /* LaunchScreen.storyboard */; };
 		F17F403625F4A320008DF6AB /* timeschedule2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F403525F4A320008DF6AB /* timeschedule2Tests.swift */; };
 		F17F404125F4A320008DF6AB /* timeschedule2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F404025F4A320008DF6AB /* timeschedule2UITests.swift */; };
+		F17F405325F4A49D008DF6AB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F405125F4A49D008DF6AB /* TableViewCell.swift */; };
+		F17F405425F4A49D008DF6AB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F405225F4A49D008DF6AB /* TableViewCell.xib */; };
+		F17F405925F4A564008DF6AB /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F405825F4A564008DF6AB /* GraphViewController.swift */; };
+		F17F405E25F4A5A2008DF6AB /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F405D25F4A5A2008DF6AB /* ChartView.swift */; };
+		F17F406325F4A5D1008DF6AB /* NyuryokuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F406225F4A5D1008DF6AB /* NyuryokuViewController.swift */; };
+		F17F406925F4A603008DF6AB /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F406725F4A603008DF6AB /* CustomTableViewCell.swift */; };
+		F17F406A25F4A603008DF6AB /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F406825F4A603008DF6AB /* CustomTableViewCell.xib */; };
+		F17F406F25F4A69B008DF6AB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F406E25F4A69B008DF6AB /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		F17F403C25F4A320008DF6AB /* timeschedule2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timeschedule2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F404025F4A320008DF6AB /* timeschedule2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeschedule2UITests.swift; sourceTree = "<group>"; };
 		F17F404225F4A320008DF6AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F17F405125F4A49D008DF6AB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		F17F405225F4A49D008DF6AB /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		F17F405825F4A564008DF6AB /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		F17F405D25F4A5A2008DF6AB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		F17F406225F4A5D1008DF6AB /* NyuryokuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyuryokuViewController.swift; sourceTree = "<group>"; };
+		F17F406725F4A603008DF6AB /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		F17F406825F4A603008DF6AB /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		F17F406E25F4A69B008DF6AB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +118,15 @@
 				F17F401E25F4A31F008DF6AB /* AppDelegate.swift */,
 				F17F402025F4A31F008DF6AB /* SceneDelegate.swift */,
 				F17F402225F4A31F008DF6AB /* ViewController.swift */,
+				F17F405125F4A49D008DF6AB /* TableViewCell.swift */,
+				F17F405225F4A49D008DF6AB /* TableViewCell.xib */,
+				F17F405825F4A564008DF6AB /* GraphViewController.swift */,
+				F17F405D25F4A5A2008DF6AB /* ChartView.swift */,
+				F17F406225F4A5D1008DF6AB /* NyuryokuViewController.swift */,
+				F17F406725F4A603008DF6AB /* CustomTableViewCell.swift */,
+				F17F406825F4A603008DF6AB /* CustomTableViewCell.xib */,
 				F17F402425F4A31F008DF6AB /* Main.storyboard */,
+				F17F406E25F4A69B008DF6AB /* PageViewController.swift */,
 				F17F402725F4A320008DF6AB /* Assets.xcassets */,
 				F17F402925F4A320008DF6AB /* LaunchScreen.storyboard */,
 				F17F402C25F4A320008DF6AB /* Info.plist */,
@@ -232,7 +256,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F17F402B25F4A320008DF6AB /* LaunchScreen.storyboard in Resources */,
+				F17F405425F4A49D008DF6AB /* TableViewCell.xib in Resources */,
 				F17F402825F4A320008DF6AB /* Assets.xcassets in Resources */,
+				F17F406A25F4A603008DF6AB /* CustomTableViewCell.xib in Resources */,
 				F17F402625F4A31F008DF6AB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +285,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F17F402325F4A31F008DF6AB /* ViewController.swift in Sources */,
+				F17F405925F4A564008DF6AB /* GraphViewController.swift in Sources */,
+				F17F406925F4A603008DF6AB /* CustomTableViewCell.swift in Sources */,
+				F17F405E25F4A5A2008DF6AB /* ChartView.swift in Sources */,
+				F17F405325F4A49D008DF6AB /* TableViewCell.swift in Sources */,
 				F17F401F25F4A31F008DF6AB /* AppDelegate.swift in Sources */,
+				F17F406F25F4A69B008DF6AB /* PageViewController.swift in Sources */,
+				F17F406325F4A5D1008DF6AB /* NyuryokuViewController.swift in Sources */,
 				F17F402125F4A31F008DF6AB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
