@@ -41,8 +41,8 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
 //        self.titleTextField.text = ""
         titleTextField.resignFirstResponder()
         try! realm.write {
-            time.title = titleTextField.text!
-            realm.add(time)
+            date.Title = titleTextField.text!
+            realm.add(date)
         }
         return true
     }

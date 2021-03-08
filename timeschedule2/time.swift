@@ -11,6 +11,7 @@ import RealmSwift
 
 class Date: Object{
     @objc dynamic var day = ""//日にち（1画面）
+    @objc dynamic var Title = ""
     var time = List<Time>()
 }
 

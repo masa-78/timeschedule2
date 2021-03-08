@@ -19,9 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     let realm = try! Realm()
     
     @IBOutlet var table: UITableView!
-    
-    @IBOutlet var titleTextField: UITextField!
-    
+ 
     override func viewDidLoad() {
         
         super.viewDidLoad()

@@ -9,8 +9,8 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegate{
     var saveData:UserDefaults = UserDefaults.standard
-    @IBOutlet var ContentTextView: UITextView!
-    @IBOutlet var titleTextField: UITextField!
+//    @IBOutlet var ContentTextView: UITextView!
+//    @IBOutlet var titleTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +23,13 @@ class CustomTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDeleg
     }
     
     func viewDidLoad() {
-        titleTextField.delegate = self
-        ContentTextView.delegate = self
+//        titleTextField.delegate = self
+//        ContentTextView.delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        titleTextField.text = textField.text
+//        titleTextField.text = textField.text
         return true
     }
   

@@ -143,8 +143,8 @@
 			children = (
 				F17F401E25F4A31F008DF6AB /* AppDelegate.swift */,
 				F17F402025F4A31F008DF6AB /* SceneDelegate.swift */,
-				F17F402225F4A31F008DF6AB /* ViewController.swift */,
 				F17F407C25F4B942008DF6AB /* time.swift */,
+				F17F402225F4A31F008DF6AB /* ViewController.swift */,
 				F17F405125F4A49D008DF6AB /* TableViewCell.swift */,
 				F17F405225F4A49D008DF6AB /* TableViewCell.xib */,
 				F17F405825F4A564008DF6AB /* GraphViewController.swift */,
