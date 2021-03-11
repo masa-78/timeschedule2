@@ -172,17 +172,31 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-2v-oF3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <navigationBar key="tableFooterView" contentMode="scaleToFill" id="Ea2-P1-eC0">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <items>
+                                        <navigationItem id="8B1-KB-iVH">
+                                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="aZR-m6-MV9">
+                                                <connections>
+                                                    <action selector="addButtonPressed:" destination="4Dy-F5-bU7" id="knu-1w-JbM"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HRg-7N-WjL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="bottom" secondItem="HRg-7N-WjL" secondAttribute="bottom" id="HlG-fa-SYb"/>
-                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="trailing" secondItem="HRg-7N-WjL" secondAttribute="trailing" id="MxT-nw-jdU"/>
-                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="top" secondItem="HRg-7N-WjL" secondAttribute="top" id="axr-Cs-6Ff"/>
-                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="leading" secondItem="HRg-7N-WjL" secondAttribute="leading" id="dQQ-Sf-ka2"/>
+                            <constraint firstItem="HRg-7N-WjL" firstAttribute="bottom" secondItem="Dm5-2v-oF3" secondAttribute="bottom" id="Igx-7D-yBN"/>
+                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="trailing" secondItem="HRg-7N-WjL" secondAttribute="trailing" id="KvT-Ry-8vd"/>
+                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="leading" secondItem="HRg-7N-WjL" secondAttribute="leading" id="WWu-KL-lQC"/>
+                            <constraint firstItem="Dm5-2v-oF3" firstAttribute="top" secondItem="HRg-7N-WjL" secondAttribute="top" id="rZt-7M-Qom"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="table" destination="Dm5-2v-oF3" id="mUb-qU-XLY"/>
                     </connections>

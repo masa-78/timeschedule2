@@ -35,20 +35,25 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-//        guard let index = contentVCs.index(of: viewController), index != NSNotFound else { return nil }
-//            let nextIndex = index + 1
-//            if index == 0 {
-//                if let nextVC = getSecond() as? GraphViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
-//                return nil
-//            } else if index == 1 {
-//                if let nextVC = getThird() as? NyuryokuViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
+        
+        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+            let nextIndex = index - 1
+            if index == 2 {
+                if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
+                    nextVC.received = nextIndex
+                    return nextVC
+                }
                 return nil
+            } else if index == 1 {
+                if let nextVC = getSecond()[nextIndex] as? GraphViewController {
+                    nextVC.received = nextIndex
+                    return nextVC
+                }
+                return nil
+            } else {
+                return nil
+            }
+        
         
         if viewController.isKind(of: NyuryokuViewController.self) {
 //          let nextVC = getSecond() as? GraphViewController
@@ -59,9 +64,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 //            // 2 -> 1
 //            return getFirst()
 //        }
-        else{
-            return nil
-        }
+
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -76,7 +79,24 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         }else{
             return nil
         }
-    }
+    
+    guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+        let nextIndex = index + 1
+        if index == 0 {
+            if let nextVC = getSecond() as? GraphViewController {
+                nextVC.received = nextIndex
+                return nextVC
+            }
+            return nil
+        } else if index == 1 {
+            if let nextVC = getThird() as? NyuryokuViewController {
+                nextVC.received = nextIndex
+                return nextVC
+            }
+            return nil
+        } else {
+            return nil
+        }
 
     //    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     //        if viewController is NyuryokuViewController{
@@ -107,3 +127,4 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
      }
      */
     }
+}

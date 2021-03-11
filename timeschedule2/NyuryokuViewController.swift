@@ -16,8 +16,6 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     var timeArray:Results<Time>!
     
     var addButtonPressed = UIBarButtonItem?.self
-    
-    var addBarButtonItem: UIBarButtonItem!
 
     var outputValue : String?
     
@@ -30,15 +28,11 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         timeArray = realm.objects(Time.self)
         print(timeArray!)
    
-        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
-        
-        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
-        
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
         table.delegate = self
         print("Nyuryoku")
-        
+
         
     }
     
@@ -56,18 +50,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        let time2 = Time()
-        
-        try! realm.write {
-            realm.add(time2)
-        }
-        print(timeArray.count)
-        self.table.reloadData()
-        print("【+】ボタンが押された!")
-    }
-    
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timeArray.count
     }
@@ -111,7 +94,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         
         var textField = UITextField()
