@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print(dateArray!)
         
         
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
                 navigationItem.title = "Title"
                 
         
@@ -57,6 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("ViewController Will Appear")
     }
     

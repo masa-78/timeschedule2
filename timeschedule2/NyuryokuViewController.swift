@@ -15,6 +15,8 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     var timeArray:Results<Time>!
     
+    var addBarButtonItem: UIBarButtonItem!
+    
     var addButtonPressed = UIBarButtonItem?.self
 
     var outputValue : String?
@@ -33,7 +35,10 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         table.delegate = self
         print("Nyuryoku")
 
+        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
+//        UINavigationBar.topAnchor.constraint(equalTo:UITableView.topAnchor).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,12 +100,38 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
             tableView.deselectRow(at: indexPath, animated: true)
         }
     
-    @IBAction func addButtonPressed(_ sender: Any) {
-        
+//    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
+//
+//        let textField = UITextField()
+//        _ = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
+//        _ = UIAlertAction(title: "リストに追加", style: .default) {(action) in
+//
+//            let time = Time()
+//            time.title = textField.text!
+//            try! self.realm.write {
+//                self.realm.add(time)
+//            }
+//            //            self.timeArray.append(time)
+//            self.table.reloadData()
+//
+//            alert.addTextField {
+//                (alertTextField) in
+//                alertTextField.placeholder = "新しいアイテム"
+//                textField = alertTextField
+//            }
+//            alert.addAction(action)
+//            present(alert, animated: true, completion: nil)
+//        }
+    
+//        print("【+】ボタンが押された!")
+//       }
+    
+    @IBAction func addBarButtonTapped(_ sender: Any) {
+
         var textField = UITextField()
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
-            
+
             let time = Time()
             time.title = textField.text!
             try! self.realm.write {
