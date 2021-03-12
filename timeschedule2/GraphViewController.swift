@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
-class GraphViewController: UIViewController {
+class GraphViewController: UIViewController, UITextFieldDelegate {
+    
+    let realm = try! Realm()
+    
+    var TotalArray:Results<Sum>!
     
     @IBOutlet var textRate:UITextField!
     @IBOutlet var labelRate:UILabel! = UILabel()
@@ -33,7 +38,8 @@ class GraphViewController: UIViewController {
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
         labelRate2.bottomAnchor.constraint(equalTo: timeRate.bottomAnchor).isActive = true
     
-        
+        textRate.delegate = self
+        timeRate.delegate = self
         
         self.view.addSubview(textRate)
         self.view.addSubview(labelRate)
@@ -46,6 +52,8 @@ class GraphViewController: UIViewController {
         
         changeScreen()
         
+        TotalArray = realm.objects(Sum.self)
+        print(TotalArray!)
         //        drawChart()
         // Do any additional setup after loading the view.
     }
@@ -94,6 +102,13 @@ class GraphViewController: UIViewController {
     
     @objc func touchUpButtonDraw(){
         drawChart()
+        let Total2 = Sum()
+        
+        try! realm.write {
+            realm.add(Total2)
+        }
+        print(TotalArray.count)
+        print("【+】ボタンが押された!")
     }
     
     /**
