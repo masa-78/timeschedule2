@@ -35,34 +35,31 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        
-//        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-//            let nextIndex = index - 1
-//            if index == 2 {
-//                if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
-//                return nil
-//            } else if index == 1 {
-//                if let nextVC = getSecond()[nextIndex] as? GraphViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
-//                return nil
-            
-        
-        
         if viewController.isKind(of: NyuryokuViewController.self) {
 //          let nextVC = getSecond() as? GraphViewController
 //            nextVC.recieved = date
             return getSecond()
         }
-//        else if viewController.isKind(of: GraphViewController.self) {
-//            // 2 -> 1
-//            return getFirst()
-//        }
-        else  {
+        //        else if viewController.isKind(of: GraphViewController.self) {
+        //            // 2 -> 1
+        //            return getFirst()
+        //        }
+        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+            let nextIndex = index - 1
+            if index == 2 {
+                if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
+                    nextVC.received = nextIndex
+                    return nextVC
+                }
+                return nil
+            } else if index == 1 {
+                if let nextVC = getSecond()[nextIndex] as? GraphViewController {
+                    nextVC.received = nextIndex
+                    return nextVC
+                }
+                return nil
+                
+            } else  {
             return nil
         }
     }
@@ -80,43 +77,23 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
             return nil
         }
     
-//    guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-//        let nextIndex = index + 1
-//        if index == 0 {
-//            if let nextVC = getSecond() as? GraphViewController {
-//                nextVC.received = nextIndex
-//                return nextVC
-//            }
-//            return nil
-//        } else if index == 1 {
-//            if let nextVC = getThird() as? NyuryokuViewController {
-//                nextVC.received = nextIndex
-//                return nextVC
-//            }
-//            return nil
-//        } else {
-//            return nil
-//        }
-
-    //    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    //        if viewController is NyuryokuViewController{
-    //            return getSecond()
-    //        }else if viewController is ViewController{
-    //            return getFirst()
-    //        }else {
-    //          return nil
-    //    }
-    //
-    //    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewcontroller viewController: UIViewController) -> UIViewController? {
-    //        if viewController is  ViewController{
-    //            return getSecond()
-    //        }else if viewController is NyuryokuViewController{
-    //            return getThird()
-    //        }else {
-    //        return nil
-    //    }
-    //    }
-    //    }
+    guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+        let nextIndex = index + 1
+        if index == 0 {
+            if let nextVC = getSecond()[nextIndex] as? GraphViewController {
+                nextVC.received = nextIndex
+                return nextVC
+            }
+            return nil
+        } else if index == 1 {
+            if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
+                nextVC.received = nextIndex
+                return nextVC
+            }
+            return nil
+        } else {
+            return nil
+        }
     /*
      // MARK: - Navigation
      
