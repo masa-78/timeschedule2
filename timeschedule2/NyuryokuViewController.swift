@@ -12,6 +12,7 @@ import RealmSwift
 class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableViewDataSource,  UITableViewDelegate{
     
     @IBOutlet var table: UITableView!
+    @IBOutlet var bar: UINavigationBar!
     
     var timeArray:Results<Time>!
     
@@ -37,6 +38,9 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
 
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        
+        bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
+        bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
 //        UINavigationBar.topAnchor.constraint(equalTo:UITableView.topAnchor).isActive = true
     }

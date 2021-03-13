@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNextViewController" {
-            _  = segue.destination as! PageViewController
+//            _  = segue.destination as! PageViewController
         }
         
     }

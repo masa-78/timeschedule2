@@ -54,6 +54,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         
         TotalArray = realm.objects(Sum.self)
         print(TotalArray!)
+        
+        timeRate.bottomAnchor.constraint(equalTo: buttonDraw.topAnchor, constant: 5.0).isActive = true
+        
         //        drawChart()
         // Do any additional setup after loading the view.
     }
@@ -109,6 +112,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         }
         print(TotalArray.count)
         print("【+】ボタンが押された!")
+        
     }
     
     /**

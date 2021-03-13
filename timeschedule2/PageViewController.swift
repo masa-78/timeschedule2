@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
+class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
 //    let date: Date!
     
@@ -15,6 +15,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         self.setViewControllers([getSecond()], direction: .forward, animated: true, completion: nil)
         self.dataSource = self
+        self.delegate = self
     }
  
     override func didReceiveMemoryWarning() {
@@ -37,63 +38,59 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
         if viewController.isKind(of: NyuryokuViewController.self) {
 //          let nextVC = getSecond() as? GraphViewController
-//            nextVC.recieved = date       39,40違う
+//            nextVC.recieved = date
+            let nextVC = getSecond()
+            
+                nextVC.received = nextIndex
+//                return nextVC
             return getSecond()
         }
-                else if viewController.isKind(of: GraphViewController.self) {
-                    // 2 -> 1
-                    return getFirst()
+        else {
+                    return nil
                 }
-//        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-//            let nextIndex = index - 1
-//            if index == 2 {
-//                if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
-//                return nil
-//            } else if index == 1 {
-//                if let nextVC = getSecond()[nextIndex] as? GraphViewController {
-//                    nextVC.received = nextIndex
-//                    return nextVC
-//                }
-//                return nil
-//
-//            } else {
-//            return nil
-//        }
-//    }
-//
+        guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
+            let nextIndex = index - 1
+            if index == 2 {
+                }
+                return nil
+    }; else if index == 1 {
+                if let nextVC = getSecond() {
+                    nextVC.received = nextIndex
+                    return nextVC
+                }
+                return nil
+
+            } else {
+            return nil
+        }
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController.isKind(of: ViewController.self) {
-                    // 1 -> 2
-                    return getSecond()
-                } else
+   
         if viewController.isKind(of: GraphViewController.self){
 //            let nextVC = getThird() as? NyuryokuViewController
-//            nextVC.recieved = date　　　73,74違う
-            return getThird()
-       } else{
+//            nextVC.recieved = date
+//            return getThird()
+            
+            let nextVC = getThird()
+                nextVC.received = nextIndex
+                return nextVC
+                }
+       else {
             return nil
         }
 //
-//    guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-//        let nextIndex = index + 1
-//        if index == 0 {
-//            if let nextVC = getSecond()[nextIndex] as? GraphViewController {
-//                nextVC.received = nextIndex
-//                return nextVC
-//            }
-//            return nil
-//        } else if index == 1 {
-//            if let nextVC = getThird()[nextIndex] as? NyuryokuViewController {
-//                nextVC.received = nextIndex
-//                return nextVC
-//            }
-//            return nil
-//        } else {
-//            return nil
-//        }
+    guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+        let nextIndex = index + 1
+        
+            return nil
+        } else if index == 1 {
+           
+            }
+            return nil
+        } else {
+            return nil
+        }
     /*
      // MARK: - Navigation
      
@@ -103,7 +100,4 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
      // Pass the selected object to the new view controller.
      }
      */
-    
-}
-    }
-}
+
