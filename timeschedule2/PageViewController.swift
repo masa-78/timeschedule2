@@ -54,6 +54,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             
         } else {
             return nil }
+        
         guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
         _ = index - 1
         //        let nextIndex = index - 1
@@ -61,7 +62,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         return nil
         
-        else if index == 1 {
+         if index == 1 {
 //        if let nextVC = getSecond() {
 //        nextVC.received = nextIndex
 //        return nextVC
@@ -94,7 +95,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let nextIndex = index + 1
         
         return nil
-    } else if index == 1 {
+    }; if index == 1 {
     
     }
     return nil
@@ -112,5 +113,5 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
      }
      */
     
-}
+
 
