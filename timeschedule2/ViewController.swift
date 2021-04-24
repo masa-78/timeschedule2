@@ -42,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         // Do any additional setup after loading the view.
         table.dataSource = self
+        
         table.delegate = self
     }
     
