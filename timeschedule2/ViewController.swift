@@ -42,7 +42,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         // Do any additional setup after loading the view.
         table.dataSource = self
-        
         table.delegate = self
     }
     
@@ -78,6 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         try! realm.write {
             realm.add(time2)
         }
+        
         print(dateArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
@@ -105,6 +105,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("/(indexPath.row)番目の行が選択されました。")
+        
         print(indexPath.row)
         
         // セルの選択を解除
