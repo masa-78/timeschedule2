@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     //    let date: Date!
@@ -15,7 +14,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var nextVC: Int!
     
     //    var NSNotFound: Int!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +42,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         if viewController.isKind(of: NyuryokuViewController.self) {
             //          let nextVC = getSecond() as? GraphViewController
-            //            nextVC.recieved = date
+            //          nextVC.recieved = date
             
             _ = getSecond()
             //            let nextIndex = getSecond()
@@ -55,6 +53,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         } else {
             return nil }
         
+//        var Int : [Int]?
+        
         guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
         _ = index - 1
         //        let nextIndex = index - 1
@@ -62,15 +62,15 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         return nil
         
-         if index == 1 {
-//        if let nextVC = getSecond() {
-//        nextVC.received = nextIndex
-//        return nextVC
-//        }
+        if index == 1 {
+            //        if let nextVC = getSecond() {
+            //        nextVC.received = nextIndex
+            //        return nextVC
+            //        }
         }
-    
-         else {
-        return nil
+        
+        else {
+            return nil
         }
     }
     
@@ -84,7 +84,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             //            return getThird()
             
             let nextVC = getThird()
-            //                nextVC.received = nextIndex
+            //            nextVC.received = nextIndex
             return nextVC
         }
         else {
@@ -95,23 +95,24 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let nextIndex = index + 1
         
         return nil
-    }; if index == 1 {
-    
-    }
-    return nil
-    else do {
-    return nil
+        if index == 1 {
+            
+        }
+        return nil
+        //    else do {
+        //    return nil
+        //    }
     }
 }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ // Get the new view controller using segue.destination.
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 
 
