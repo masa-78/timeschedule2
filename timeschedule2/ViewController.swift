@@ -93,6 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         let cell = table.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
             as!TableViewCell
         print("cellが呼び出された")
+        
         cell.セルに表示するデータの制御(choice:indexPath)
         
         return cell
