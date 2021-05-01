@@ -57,6 +57,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         
         timeRate.bottomAnchor.constraint(equalTo: buttonDraw.topAnchor, constant: 5.0).isActive = true
         
+        print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
     }

@@ -15,10 +15,10 @@ class Date: Object{
     var all = List<Sum>()
     var time = List<Time>()
 }
+
 class Sum: Object{
     @objc dynamic var total = ""//2画面
 }
-
 
 class Time: Object {
     //3画面
