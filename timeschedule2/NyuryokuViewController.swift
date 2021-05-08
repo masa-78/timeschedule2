@@ -14,7 +14,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     @IBOutlet var table: UITableView!
     @IBOutlet var bar: UINavigationBar!
     
-    var timeArray:Results<Time>!
+    var hourArray:Results<Hour>!
     
     var addBarButtonItem: UIBarButtonItem!
     
@@ -28,8 +28,8 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timeArray = realm.objects(Time.self)
-        print(timeArray!)
+        hourArray = realm.objects(Hour.self)
+        print(hourArray!)
    
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
@@ -61,13 +61,13 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     }
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeArray.count
+        return hourArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
-        let time = timeArray[indexPath.row]
+        let time = hourArray[indexPath.row]
         cell.textLabel?.text = time.title
         //cell.accessoryType = time.done ? .checkmark : .none
         print("aaa")
@@ -92,7 +92,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
             
             try! realm.write {
                 //                timeArray.remove(at: indexPath.row)
-                let item = (timeArray[indexPath.row])
+                let item = (hourArray[indexPath.row])
                 realm.delete(item)
             }
         }
@@ -136,7 +136,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
 
-            let time = Time()
+            let time = Hour()
             time.title = textField.text!
             try! self.realm.write {
                 self.realm.add(time)

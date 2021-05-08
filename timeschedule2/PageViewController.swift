@@ -8,8 +8,6 @@
 import UIKit
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    //    let date: Date!
-    
     var nextIndex: Int!
     var nextVC: Int!
     
@@ -114,6 +112,3 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
  // Pass the selected object to the new view controller.
  }
  */
-
-
-

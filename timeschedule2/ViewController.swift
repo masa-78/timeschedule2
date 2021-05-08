@@ -12,7 +12,7 @@ import RealmSwift
 class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSource{
     
 //    var timeArray:Results<Time>!
-    var dateArray:Results<Date>!
+    var scheduleArray:Results<Schedule>!
     
     var addBarButtonItem: UIBarButtonItem!
     
@@ -29,9 +29,9 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
 //        timeArray = realm.objects(Time.self)
-        dateArray = realm.objects(Date.self)
+        scheduleArray = realm.objects(Schedule.self)
 //        print(timeArray!)
-        print(dateArray!)
+        print(scheduleArray!)
         
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -72,21 +72,21 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
 
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        let time2 = Date()
+        let time2 = Schedule()
         
         try! realm.write {
             realm.add(time2)
         }
         
-        print(dateArray.count)
+        print(scheduleArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("タップされました")
-        print(dateArray.count)
-        return dateArray.count
+        print(scheduleArray.count)
+        return scheduleArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,7 +122,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
             // アイテム削除処理
             
             try! realm.write{
-                let item = (dateArray[indexPath.row])
+                let item = (scheduleArray[indexPath.row])
                 realm.delete(item)
             }
         }
@@ -161,5 +161,3 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         })
     }
 }
-
-

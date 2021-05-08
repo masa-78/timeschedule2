@@ -11,18 +11,18 @@ import RealmSwift
 class TableViewCell: UITableViewCell,UITextFieldDelegate{
     @IBOutlet var titleTextField: UITextField!
     
-    var time: Time!
-    var date: Date!
+    var time: Hour!
+    var date: Schedule!
 
     let realm = try! Realm()
     
 //    var timeArray: Results<Time>!
-    var dateArray: Results<Date>!
+    var scheduleArray: Results<Schedule>!
     
     override func awakeFromNib() {
         super.awakeFromNib()
        titleTextField.delegate = self
-        dateArray = realm.objects(Date.self)
+        scheduleArray = realm.objects(Schedule.self)
     
         //         Initialization code
     }
@@ -49,7 +49,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     
     func  セルに表示するデータの制御(choice:IndexPath){
         self.titleTextField.text = String((choice .row) + 1)
-        date = dateArray[choice.row]
+        date = scheduleArray[choice.row]
 
     }
     
