@@ -11,7 +11,6 @@ import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSource{
     
-//    var timeArray:Results<Time>!
     var scheduleArray:Results<Schedule>!
     
     var addBarButtonItem: UIBarButtonItem!
@@ -35,7 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-                navigationItem.title = "Title"
+                navigationItem.title = "Day"
                 
         
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")

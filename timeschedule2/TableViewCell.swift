@@ -13,7 +13,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     
     var time: Hour!
     var date: Schedule!
-
+    
     let realm = try! Realm()
     
 //    var timeArray: Results<Time>!
@@ -41,7 +41,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
 //        self.titleTextField.text = ""
         titleTextField.resignFirstResponder()
         try! realm.write {
-            date.Title = titleTextField.text!
+            date.day = titleTextField.text!
             realm.add(date)
         }
         return true
