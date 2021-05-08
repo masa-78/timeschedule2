@@ -147,7 +147,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         alert.addTextField {
             (alertTextField) in
             alertTextField.placeholder = "新しいアイテム"
-            textField = alertTextField
+            textField =  alertTextField
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
