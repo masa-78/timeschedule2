@@ -11,7 +11,7 @@ import RealmSwift
 
 class Schedule: Object{
     @objc dynamic var day = ""//日にち（1画面）
-    @objc dynamic var Title = ""
+   
     var all = List<Sum>()
     var time = List<Hour>()
 }

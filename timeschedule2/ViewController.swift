@@ -17,12 +17,14 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     let realm = try! Realm()
     
+    let plan: [String: Any] = ["Schedule": ["Sum"]]
+ 
     @IBOutlet var table: UITableView!
  
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+  
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
@@ -32,11 +34,9 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
 //        print(timeArray!)
         print(scheduleArray!)
         
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
                 navigationItem.title = "Day"
                 
-        
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")
         
         // Do any additional setup after loading the view.
@@ -72,10 +72,24 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let time2 = Schedule()
+        let task = Sum(value: plan)
+        let results = realm.objects(Schedule.self)
+            print(results)
+        
+        try! realm.write {
+                realm.add(task)
+                print(task)
+            }
         
         try! realm.write {
             realm.add(time2)
         }
+        
+        try! realm.write {
+                for task in results {
+                    task.all.append(task)
+                }
+            }
         
         print(scheduleArray.count)
         self.table.reloadData()
