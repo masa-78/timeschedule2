@@ -69,7 +69,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         self.view.endEditing(true)
     }
 
-    
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let time2 = Schedule()
         let task = Sum(value: plan)
