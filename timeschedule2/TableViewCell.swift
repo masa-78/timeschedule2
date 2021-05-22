@@ -15,7 +15,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     var date: Schedule!
     
     let realm = try! Realm()
-    
+    var dic: [String:String] = [:]
 //    var timeArray: Results<Time>!
     var scheduleArray: Results<Schedule>!
     
@@ -47,10 +47,26 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         return true
     }
     
-    func  セルに表示するデータの制御(choice:IndexPath){
+    func  textFieldShouldReturn(choice:IndexPath){
         self.titleTextField.text = String((choice .row) + 1)
         date = scheduleArray[choice.row]
-
+        
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            // アイテム削除処理
+            
+            try! realm.write{
+                let item = (scheduleArray[indexPath.row])
+                realm.delete(item)
+            }
+        }
+        // TableViewを再読み込み.
+        //        self.table.reloadData()
+}
+    
+    func dictionary(choice:indexPath) {
+        dic = [titleTextField:text!] = [:]
+    }
 }

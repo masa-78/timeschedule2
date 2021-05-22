@@ -17,31 +17,39 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     let realm = try! Realm()
     
-    let plan: [String: Any] = ["Schedule": ["Sum"]]
- 
+    var plan: [String:[String]] = [:]
+    
     @IBOutlet var table: UITableView!
- 
+    
+    @IBOutlet var titleTextField: UITextField!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-  
+        
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
-//        timeArray = realm.objects(Time.self)
+        //        timeArray = realm.objects(Time.self)
         scheduleArray = realm.objects(Schedule.self)
-//        print(timeArray!)
+        //        print(timeArray!)
         print(scheduleArray!)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-                navigationItem.title = "Day"
-                
+        navigationItem.title = "Day"
+        
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")
         
         // Do any additional setup after loading the view.
         table.dataSource = self
         table.delegate = self
+        
+        if plan.isEmpty {
+            print("plan dictionary is empty.")
+        } else {
+            print("plan dictionary is not empty.")
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNextViewController" {
-//            _  = segue.destination as! PageViewController
+            //            _  = segue.destination as! PageViewController
         }
         
     }
@@ -68,27 +76,28 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
+        
         let time2 = Schedule()
         let task = Sum(value: plan)
         let results = realm.objects(Schedule.self)
-            print(results)
+        print(results)
         
         try! realm.write {
-                realm.add(task)
-                print(task)
-            }
+            realm.add(task)
+            print(task)
+        }
         
         try! realm.write {
             realm.add(time2)
         }
         
         try! realm.write {
-                for task in results {
-                    task.all.append(task)
-                }
+            for task in results {
+                task.all.append(task)
             }
+        }
         
         print(scheduleArray.count)
         self.table.reloadData()
@@ -106,8 +115,8 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
             as!TableViewCell
         print("cellが呼び出された")
         
-        cell.セルに表示するデータの制御(choice:indexPath)
-        
+        cell.textFieldShouldReturn(choice:indexPath)
+        cell.dic(choice:indexPath)
         return cell
     }
     
@@ -126,22 +135,23 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         //        indexpath.row
         performSegue(withIdentifier: "toNextViewController", sender: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            // アイテム削除処理
-            
-            try! realm.write{
-                let item = (scheduleArray[indexPath.row])
-                realm.delete(item)
-            }
-        }
+    
+    
+    
         
-        // TableViewを再読み込み.
-        self.table.reloadData()
-    }
+//        if editingStyle == .{
+//
+//            try! realm.write{
+//                let item = (scheduleArray[indexPath.row])
+//                realm.add(item)
+//            }
+//        }
+        
+        
+    
+    
     
     //  キーボードずらし
     func configureObserver() {
