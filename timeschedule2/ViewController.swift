@@ -80,24 +80,24 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let time2 = Schedule()
-        let task = Sum(value: plan)
-        let results = realm.objects(Schedule.self)
-        print(results)
+        time2.title = titleTextField.text
+//        let task = Sum(value: plan)
+//        let results = realm.objects(Schedule.self)
+//        try! realm.write() {
+//            realm.add(task)
+//            print(task)
+//        }
         
-        try! realm.write {
-            realm.add(task)
-            print(task)
-        }
-        
-        try! realm.write {
+        try! realm.write() {
             realm.add(time2)
         }
         
-        try! realm.write {
-            for task in results {
-                task.all.append(task)
-            }
-        }
+//        try! realm.write() {
+//            for task in results {
+//                task.all.append(task)
+//
+//        }
+//        }
         
         print(scheduleArray.count)
         self.table.reloadData()
@@ -116,7 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print("cellが呼び出された")
         
         cell.textFieldShouldReturn(choice:indexPath)
-        cell.dic(choice:indexPath)
+//        cell.dic(choice:indexPath)
         return cell
     }
     
@@ -135,6 +135,11 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         //        indexpath.row
         performSegue(withIdentifier: "toNextViewController", sender: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextView = storyboard.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
+        nextView.index = indexPath.row
+        self.navigationController?.pushViewController(nextView, animated: true)
     }
     
     

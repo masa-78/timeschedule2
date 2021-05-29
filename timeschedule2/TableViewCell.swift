@@ -66,7 +66,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         //        self.table.reloadData()
 }
     
-    func dictionary(choice:indexPath) {
-        dic = [titleTextField:text!] = [:]
-    }
+//    func dictionary(choice:indexPath) {
+//        dic = [titleTextField:text!] = [:]
+//    }
 }

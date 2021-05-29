@@ -24,6 +24,8 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     var resultHandler: ((String) -> Void)?
     
+    var index: Int?
+    
     let realm = try! Realm()
     
     override func viewDidLoad() {
@@ -61,14 +63,17 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     }
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let time = objs[index!].time
         return hourArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
-        let time = hourArray[indexPath.row]
-        cell.textLabel?.text = time.title
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let time = objs[index!].time
+//        let time = hourArray[indexPath.row]
+        cell.textLabel?.text = time[indexPath.row].title
         //cell.accessoryType = time.done ? .checkmark : .none
         print("aaa")
         print (time)
@@ -88,12 +93,17 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            let objs: Results<Schedule> = realm.objects(Schedule.self)
+            let time3 = Hour()
+            time3.title = textField.text
+            let time = Schedule.time
+            let obj = time[indexPath.row]
             // アイテム削除処理
             
             try! realm.write {
                 //                timeArray.remove(at: indexPath.row)
                 let item = (hourArray[indexPath.row])
-                realm.delete(item)
+                realm.delete(time3)
             }
         }
         // TableViewを再読み込み.
@@ -132,14 +142,17 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     @IBAction func addBarButtonTapped(_ sender: Any) {
 
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
 
-            let time = Hour()
+            let schedule = objs[self.index!]
+            let time = Schedule.time
+            let hour = Hour()
             time.title = textField.text!
             try! self.realm.write {
-                self.realm.add(time)
+                self.realm.add(hour)
             }
             //            self.timeArray.append(time)
             self.table.reloadData()
