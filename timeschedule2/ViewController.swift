@@ -142,7 +142,11 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         self.navigationController?.pushViewController(nextView, animated: true)
     }
     
-    
+    //ただランダムな文字列作ってるだけです
+//    func randomString() -> String {
+//        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+//        return String((0..<12).map{ _ in characters.randomElement()! })
+//    }
     
     
         

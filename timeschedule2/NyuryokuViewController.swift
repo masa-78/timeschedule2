@@ -76,7 +76,6 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         cell.textLabel?.text = time[indexPath.row].title
         //cell.accessoryType = time.done ? .checkmark : .none
         print("aaa")
-        print (time)
         return cell
     }
     
@@ -94,14 +93,15 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let objs: Results<Schedule> = realm.objects(Schedule.self)
+            let schedule = realm.objects(Schedule.self)
             let time3 = Hour()
-            time3.title = textField.text
-            let time = Schedule.time
+//            time3.title = TextField.text
+            let time = schedule.time
             let obj = time[indexPath.row]
             // アイテム削除処理
             
             try! realm.write {
-                //                timeArray.remove(at: indexPath.row)
+//                timeArray.remove(at: indexPath.row)
                 let item = (hourArray[indexPath.row])
                 realm.delete(time3)
             }
@@ -148,9 +148,9 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
 
             let schedule = objs[self.index!]
-            let time = Schedule.time
+            let time = schedule.time
             let hour = Hour()
-            time.title = textField.text!
+            time.title = textField.text
             try! self.realm.write {
                 self.realm.add(hour)
             }
