@@ -81,9 +81,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     //        return 300
-    //
     //    }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -93,17 +91,18 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let objs: Results<Schedule> = realm.objects(Schedule.self)
-            let schedule = realm.objects(Schedule.self)
+            let schedule = objs[self.index!]
             let time3 = Hour()
 //            time3.title = TextField.text
             let time = schedule.time
             let obj = time[indexPath.row]
             // アイテム削除処理
             
-            try! realm.write {
+            try! realm.write(){
 //                timeArray.remove(at: indexPath.row)
                 let item = (hourArray[indexPath.row])
                 realm.delete(time3)
+             
             }
         }
         // TableViewを再読み込み.
@@ -150,9 +149,10 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
             let schedule = objs[self.index!]
             let time = schedule.time
             let hour = Hour()
-            time.title = textField.text
+            hour.title = textField.text!
             try! self.realm.write {
                 self.realm.add(hour)
+                time.append(hour)
             }
             //            self.timeArray.append(time)
             self.table.reloadData()

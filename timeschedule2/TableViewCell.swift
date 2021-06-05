@@ -48,9 +48,12 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     }
     
     func  textFieldShouldReturn(choice:IndexPath){
+        let time2 = Schedule()
+        
         self.titleTextField.text = String((choice .row) + 1)
         date = scheduleArray[choice.row]
         
+        time2.title = titleTextField.text
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

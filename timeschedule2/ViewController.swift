@@ -80,7 +80,8 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let time2 = Schedule()
-        time2.title = titleTextField.text
+//        titleTextField.text =  time2.title
+//        time2.title = titleTextField.text
 //        let task = Sum(value: plan)
 //        let results = realm.objects(Schedule.self)
 //        try! realm.write() {
