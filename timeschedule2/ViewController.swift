@@ -60,7 +60,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         if segue.identifier == "toNextViewController" {
             //            _  = segue.destination as! PageViewController
         }
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

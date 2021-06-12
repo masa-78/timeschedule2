@@ -50,6 +50,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("NyuryokuViewController Will Appear")
+        print(index)
         self.table.reloadData()
     }
     
@@ -101,8 +102,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
             try! realm.write(){
 //                timeArray.remove(at: indexPath.row)
                 let item = (hourArray[indexPath.row])
-                realm.delete(time3)
-             
+                realm.delete(item)
             }
         }
         // TableViewを再読み込み.
