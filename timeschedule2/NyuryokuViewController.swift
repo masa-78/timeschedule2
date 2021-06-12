@@ -76,7 +76,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
 //        let time = hourArray[indexPath.row]
         cell.textLabel?.text = time[indexPath.row].title
         //cell.accessoryType = time.done ? .checkmark : .none
-        print("aaa")
+      
         return cell
     }
     
