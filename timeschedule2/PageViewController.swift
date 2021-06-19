@@ -18,7 +18,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         self.setViewControllers([getSecond()], direction: .forward, animated: true, completion: nil)
         self.dataSource = self
         self.delegate = self
-    
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,37 +43,35 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             //          let nextVC = getSecond() as? GraphViewController
             //          nextVC.recieved = date
             
-            _ = getSecond()
+            let nextVC = getSecond()
             //            let nextIndex = getSecond()
             //            nextVC.received = nextIndex
-            //                return nextVC
+            //            return nextVC
             return getSecond()
             
         } else {
             return nil }
         
-//        var Int : [Int]?
+        //        var Int : [Int]?
         
-//        guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
-//        _ = index - 1
-        //        let nextIndex = index - 1
-//        if index == 2 {
-//        }
-//        return nil
-//
-//        if index == 1 {
-            //        if let nextVC = getSecond() {
-            //        nextVC.received = nextIndex
-            //        return nextVC
-            //        }
-//        }
-//
-//        else {
-//            return nil
-//        }
+        //        guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
+        //        _ = index - 1
+        //                let nextIndex = index - 1
+        //        if index == 2 {
+        //        }
+        //        return nil
+        //
+        //        if index == 1 {
+        //                    if let nextVC = getSecond() {
+        //                    nextVC.received = nextIndex
+        //                    return nextVC
+        //                    }
+        //        }
+        //
+        //        else {
+        //            return nil
+        //        }
     }
-    
-    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
@@ -90,14 +88,14 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             return nil
         }
         
-//        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-//        let nextIndex = index + 1
-//
-//        return nil
-//        if index == 1 {
-//
-//        }
-//        return nil
+        //        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
+        //        let nextIndex = index + 1
+        //
+        //        return nil
+        //        if index == 1 {
+        //
+        //        }
+        //        return nil
         //    else do {
         //    return nil
         //    }

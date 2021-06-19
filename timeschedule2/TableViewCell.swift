@@ -16,14 +16,14 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     
     let realm = try! Realm()
     var dic: [String:String] = [:]
-//    var timeArray: Results<Time>!
+    //    var timeArray: Results<Time>!
     var scheduleArray: Results<Schedule>!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       titleTextField.delegate = self
+        titleTextField.delegate = self
         scheduleArray = realm.objects(Schedule.self)
-    
+        
         //         Initialization code
     }
     
@@ -33,12 +33,12 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         // Configure the view for the selected state
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        titleTextField.resignFirstResponder()
-//    }
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        titleTextField.resignFirstResponder()
+    //    }
     
     func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
-//        self.titleTextField.text = ""
+        //        self.titleTextField.text = ""
         titleTextField.resignFirstResponder()
         try! realm.write {
             date.day = titleTextField.text!
@@ -67,9 +67,9 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         }
         // TableViewを再読み込み.
         //        self.table.reloadData()
-}
+    }
     
-//    func dictionary(choice:indexPath) {
-//        dic = [titleTextField:text!] = [:]
-//    }
+    //    func dictionary(choice:indexPath) {
+    //        dic = [titleTextField:text!] = [:]
+    //    }
 }

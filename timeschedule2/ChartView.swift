@@ -8,14 +8,14 @@
 import UIKit
 
 class ChartView: UIView {
- 
+    
     let caShapeLayerForBase:CAShapeLayer = CAShapeLayer.init()
     let caShapeLayerForValue:CAShapeLayer = CAShapeLayer.init()
-
+    
     func drawChart(rate:Double){
         drawBaseChart()
         drawValueChart(rate: rate)
-
+        
         let caBasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         caBasicAnimation.duration = 2.0
         caBasicAnimation.fromValue = 0.0

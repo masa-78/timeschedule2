@@ -189,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOE-iW-nxu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="80"/>
+            <point key="canvasLocation" x="2848" y="80"/>
         </scene>
         <!--Nyuryoku View Controller-->
         <scene sceneID="XcT-zc-WvF">
@@ -237,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rz3-h9-CEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3405.7971014492755" y="79.6875"/>
+            <point key="canvasLocation" x="3764" y="80"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dUX-kB-HK4">

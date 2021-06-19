@@ -9,8 +9,6 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegate{
     var saveData:UserDefaults = UserDefaults.standard
-//    @IBOutlet var ContentTextView: UITextView!
-//    @IBOutlet var titleTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +27,7 @@ class CustomTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDeleg
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        titleTextField.text = textField.text
+
         return true
     }
-  
 }

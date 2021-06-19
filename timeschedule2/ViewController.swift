@@ -33,7 +33,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         //        timeArray = realm.objects(Time.self)
         scheduleArray = realm.objects(Schedule.self)
-        //        print(timeArray!)
         print(scheduleArray!)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -58,9 +57,10 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNextViewController" {
-            //            _  = segue.destination as! PageViewController
         }
     }
+    //    画面遷移　segue
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -77,28 +77,10 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     }
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        
         let time2 = Schedule()
-//        titleTextField.text =  time2.title
-//        time2.title = titleTextField.text
-//        let task = Sum(value: plan)
-//        let results = realm.objects(Schedule.self)
-//        try! realm.write() {
-//            realm.add(task)
-//            print(task)
-//        }
-        
         try! realm.write() {
             realm.add(time2)
         }
-        
-//        try! realm.write() {
-//            for task in results {
-//                task.all.append(task)
-//
-//        }
-//        }
-        
         print(scheduleArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
@@ -114,9 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         let cell = table.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
             as!TableViewCell
         print("cellが呼び出された")
-        
         cell.textFieldShouldReturn(choice:indexPath)
-//        cell.dic(choice:indexPath)
         return cell
     }
     
@@ -127,40 +107,21 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("/(indexPath.row)番目の行が選択されました。")
-        
         print(indexPath.row)
         
         // セルの選択を解除
         table.deselectRow(at: indexPath, animated: true)
         //        indexpath.row
-        performSegue(withIdentifier: "toNextViewController", sender: indexPath.row)
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextView = storyboard.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
-        nextView.index = indexPath.row
-        self.navigationController?.pushViewController(nextView, animated: true)
+        let nextView = storyboard.instantiateViewController(withIdentifier: "View2") as! GraphViewController
+        let SecondView = storyboard.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
+        SecondView.index = indexPath.row
+        //        self.navigationController?.pushViewController(nextView, animated: true)
+        performSegue(withIdentifier: "toNextViewController", sender: indexPath.row)
     }
-    
-    //ただランダムな文字列作ってるだけです
-//    func randomString() -> String {
-//        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-//        return String((0..<12).map{ _ in characters.randomElement()! })
-//    }
-    
-    
-        
-//        if editingStyle == .{
-//
-//            try! realm.write{
-//                let item = (scheduleArray[indexPath.row])
-//                realm.add(item)
-//            }
-//        }
-        
-        
-    
-    
     
     //  キーボードずらし
     func configureObserver() {

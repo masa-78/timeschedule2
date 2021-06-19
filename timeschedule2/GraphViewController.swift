@@ -22,10 +22,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var labelRate2:UILabel!
     @IBOutlet var labelRate3:UILabel!
     @IBOutlet var labelRate4:UILabel!
-
+    
+    var index: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         textRate.layer.cornerRadius = 10
         timeRate.layer.cornerRadius = 10
         textRate.layer.borderColor = UIColor.lightGray.cgColor
@@ -37,7 +39,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         buttonDraw.setTitleColor(UIColor.blue, for: .normal)
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
         labelRate2.bottomAnchor.constraint(equalTo: timeRate.bottomAnchor).isActive = true
-    
+        
         textRate.delegate = self
         timeRate.delegate = self
         
@@ -74,7 +76,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("GraphViewController Will Appear")
-        
         self.configureObserver()
     }
     
@@ -96,7 +97,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         //        textRate.frame = CGRect(x: widthValue/2-170, y: 100, width: 100, height:40)
         //        labelRate.frame = CGRect(x: widthValue/2-70, y: 100, width: 40, height: 40)
         //        buttonDraw.frame = CGRect(x: widthValue/2-30, y: 100, width: 200, height: 40)
-        
         var drawWidth = widthValue * 0.7
         if (widthValue > heightValue){
             drawWidth = heightValue * 0.8
@@ -115,7 +115,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         print("【+】ボタンが押された!")
         
     }
-    
     /**
      グラフを表示
      */

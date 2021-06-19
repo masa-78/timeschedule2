@@ -19,7 +19,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     var addBarButtonItem: UIBarButtonItem!
     
     var addButtonPressed = UIBarButtonItem?.self
-
+    
     var outputValue : String?
     
     var resultHandler: ((String) -> Void)?
@@ -32,19 +32,17 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         super.viewDidLoad()
         hourArray = realm.objects(Hour.self)
         print(hourArray!)
-   
+        
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
         table.delegate = self
         print("Nyuryoku")
-
+        
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
         bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
         bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-//        UINavigationBar.topAnchor.constraint(equalTo:UITableView.topAnchor).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +60,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].time
@@ -73,16 +71,9 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].time
-//        let time = hourArray[indexPath.row]
         cell.textLabel?.text = time[indexPath.row].title
-        //cell.accessoryType = time.done ? .checkmark : .none
-      
         return cell
     }
-    
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 300
-    //    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -94,13 +85,13 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
             let objs: Results<Schedule> = realm.objects(Schedule.self)
             let schedule = objs[self.index!]
             let time3 = Hour()
-//            time3.title = TextField.text
+            //            time3.title = TextField.text
             let time = schedule.time
             let obj = time[indexPath.row]
             // アイテム削除処理
             
             try! realm.write(){
-//                timeArray.remove(at: indexPath.row)
+                //              timeArray.remove(at: indexPath.row)
                 let item = (hourArray[indexPath.row])
                 realm.delete(item)
             }
@@ -110,42 +101,16 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
-    
-//    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
-//
-//        let textField = UITextField()
-//        _ = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
-//        _ = UIAlertAction(title: "リストに追加", style: .default) {(action) in
-//
-//            let time = Time()
-//            time.title = textField.text!
-//            try! self.realm.write {
-//                self.realm.add(time)
-//            }
-//            //            self.timeArray.append(time)
-//            self.table.reloadData()
-//
-//            alert.addTextField {
-//                (alertTextField) in
-//                alertTextField.placeholder = "新しいアイテム"
-//                textField = alertTextField
-//            }
-//            alert.addAction(action)
-//            present(alert, animated: true, completion: nil)
-//        }
-    
-//        print("【+】ボタンが押された!")
-//       }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     @IBAction func addBarButtonTapped(_ sender: Any) {
-
+        
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
-
+            
             let schedule = objs[self.index!]
             let time = schedule.time
             let hour = Hour()
@@ -165,7 +130,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-  
+    
 }
 
 /*
