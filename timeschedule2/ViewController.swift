@@ -100,6 +100,21 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            // アイテム削除処理
+            
+            try! realm.write{
+                let item = (scheduleArray[indexPath.row])
+                realm.delete(item)
+            }
+        }
+        
+        // TableViewを再読み込み.
+        self.table.reloadData()
+    }
+    
     func taptransition(_ sender: Any) {
         performSegue(withIdentifier: "toNextViewController", sender: nil)
     }

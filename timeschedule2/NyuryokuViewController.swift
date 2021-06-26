@@ -130,7 +130,6 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
 }
 
 /*
