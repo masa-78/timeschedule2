@@ -12,8 +12,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     let realm = try! Realm()
     
-    var TotalArray:Results<Sum>!
-    
     @IBOutlet var textRate:UITextField!
     @IBOutlet var labelRate:UILabel! = UILabel()
     @IBOutlet var buttonDraw:UIButton! = UIButton()
@@ -53,9 +51,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(timeRate)
         
         changeScreen()
-        
-        TotalArray = realm.objects(Sum.self)
-        print(TotalArray!)
         
         timeRate.bottomAnchor.constraint(equalTo: buttonDraw.topAnchor, constant: 5.0).isActive = true
         
@@ -106,14 +101,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     @objc func touchUpButtonDraw(){
         drawChart()
-        let Total2 = Sum()
+        let Total = Sum()
         
         try! realm.write {
-            realm.add(Total2)
+            realm.add(Total)
         }
-        print(TotalArray.count)
-        print("【+】ボタンが押された!")
         
+        print("グラフ表示ボタンが押された!")
     }
     /**
      グラフを表示
@@ -129,7 +123,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
     // Notificationを削除
     func removeObserver() {
         

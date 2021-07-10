@@ -100,7 +100,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             // アイテム削除処理
