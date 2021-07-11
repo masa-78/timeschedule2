@@ -40,8 +40,20 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
-        bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
-        bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        if let bar = bar {
+            bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
+            print(bar)
+        } else {
+            print("値が代入されていません")
+        }
+       
+        if let bar = bar {
+            bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+            print(bar)
+        } else {
+            print("値が代入されていません")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +127,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func addBarButtonTapped(_ sender: Any) {
+    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
