@@ -38,7 +38,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         print("Nyuryoku")
         
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
-        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        self.navigationItem.rightBarButtonItem = addBarButtonItem
         
         
         if let bar = bar {
@@ -71,6 +71,15 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+//    func setuoNavigation() {
+//        let Nabutton1: UIBarButtonItem = UIBarButtonItem.init(
+//            style: UIBarButtonItem.Style.plain,
+//            target: self,
+//            action: #selector(Nabutton1Proc))
+//        
+//        self.navigationItem.rightBarButtonItems = [Nabutton1]
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
@@ -127,7 +136,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
