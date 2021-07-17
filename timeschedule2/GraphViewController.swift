@@ -27,33 +27,30 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         textRate.layer.cornerRadius = 10
-        timeRate.layer.cornerRadius = 10
+        
         textRate.layer.borderColor = UIColor.lightGray.cgColor
-        timeRate.layer.borderColor = UIColor.lightGray.cgColor
+        
         
         textRate.keyboardType = .numberPad
         textRate.text = "0"
         
         buttonDraw.setTitleColor(UIColor.blue, for: .normal)
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
-        labelRate2.bottomAnchor.constraint(equalTo: timeRate.bottomAnchor).isActive = true
+//        labelRate2.bottomAnchor.constraint(equalTo: timeRate.bottomAnchor).isActive = true
         
         textRate.delegate = self
-        timeRate.delegate = self
         
         self.view.addSubview(textRate)
         self.view.addSubview(labelRate)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
-        self.view.addSubview(labelRate2)
+//        self.view.addSubview(labelRate2)
         self.view.addSubview(labelRate3)
-        self.view.addSubview(labelRate4)
-        self.view.addSubview(timeRate)
+//        self.view.addSubview(labelRate4)
+//        self.view.addSubview(timeRate)
         
         changeScreen()
-        
-        timeRate.bottomAnchor.constraint(equalTo: buttonDraw.topAnchor, constant: 5.0).isActive = true
-        
+                
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
