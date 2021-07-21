@@ -16,11 +16,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var labelRate:UILabel! = UILabel()
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
-    @IBOutlet var timeRate:UITextField!
-    @IBOutlet var labelRate2:UILabel!
     @IBOutlet var labelRate3:UILabel!
-    @IBOutlet var labelRate4:UILabel!
-    
     var index: Int?
     
     override func viewDidLoad() {
@@ -30,13 +26,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         
         textRate.layer.borderColor = UIColor.lightGray.cgColor
         
-        
         textRate.keyboardType = .numberPad
         textRate.text = "0"
         
         buttonDraw.setTitleColor(UIColor.blue, for: .normal)
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
-//        labelRate2.bottomAnchor.constraint(equalTo: timeRate.bottomAnchor).isActive = true
         
         textRate.delegate = self
         
@@ -44,10 +38,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(labelRate)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
-//        self.view.addSubview(labelRate2)
         self.view.addSubview(labelRate3)
-//        self.view.addSubview(labelRate4)
-//        self.view.addSubview(timeRate)
         
         changeScreen()
                 

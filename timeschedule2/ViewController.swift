@@ -20,18 +20,18 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     var plan: [String:[String]] = [:]
     
     @IBOutlet var table: UITableView!
-    
-    @IBOutlet var titleTextField: UITextField!
-    
+    @IBOutlet var SaveButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+       
+        
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
-        
-        //        timeArray = realm.objects(Time.self)
+       
         scheduleArray = realm.objects(Schedule.self)
         print(scheduleArray!)
         
@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")
         
-        // Do any additional setup after loading the view.
         table.dataSource = self
         table.delegate = self
         
@@ -84,6 +83,10 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print(scheduleArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
+    }
+    
+    @IBAction func SavebuttonTapped(_ sender: UIBarButtonItem){
+        let day: String = titleTextField.text!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

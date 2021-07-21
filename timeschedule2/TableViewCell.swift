@@ -24,6 +24,11 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         titleTextField.delegate = self
         scheduleArray = realm.objects(Schedule.self)
         
+        let schedule: Schedule? = read()
+        
+            titleTextField.text = schedule?.day
+        
+        
         //         Initialization code
     }
     
@@ -36,6 +41,10 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     //        titleTextField.resignFirstResponder()
     //    }
+    
+    func read() -> Schedule? {
+        return realm.objects(Schedule.self).first
+    }
     
     func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
         //        self.titleTextField.text = ""

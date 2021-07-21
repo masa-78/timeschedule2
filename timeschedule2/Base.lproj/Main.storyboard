@@ -26,6 +26,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TfZ-bb-NYK" id="CFa-NS-5EK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g3w-hd-GAn">
+                                                    <rect key="frame" x="36" y="4" width="97" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -41,13 +49,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c7v-GT-nAo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4DK-Zf-Xu5">
-                            <connections>
-                                <action selector="addBarButtonTapped:" destination="BYZ-38-t0r" id="8c4-Bb-u4L"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="4DK-Zf-Xu5">
+                                <connections>
+                                    <action selector="addBarButtonTapped:" destination="BYZ-38-t0r" id="8c4-Bb-u4L"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="save" id="Tn0-ca-ApH"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="SaveButton" destination="Tn0-ca-ApH" id="uVc-9a-3T8"/>
                         <outlet property="table" destination="2cx-fU-B4Q" id="6Y6-hQ-FDT"/>
                         <segue destination="g0v-RT-c0Q" kind="show" identifier="toNextViewController" id="EXR-nj-A9c"/>
                     </connections>
@@ -208,11 +220,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="RUS-1s-ktP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ffq-pX-HQs">
-                            <connections>
-                                <action selector="addBarButtonTapped:" destination="BYZ-38-t0r" id="rJC-KA-VIf"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ffq-pX-HQs"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
