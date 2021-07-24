@@ -25,9 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-       
-        
+    
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
@@ -83,10 +81,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print(scheduleArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
-    }
-    
-    @IBAction func SavebuttonTapped(_ sender: UIBarButtonItem){
-        let day: String = titleTextField.text!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

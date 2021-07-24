@@ -23,11 +23,12 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         super.awakeFromNib()
         titleTextField.delegate = self
         scheduleArray = realm.objects(Schedule.self)
-        
         let schedule: Schedule? = read()
+        titleTextField.text = schedule?.day
         
-            titleTextField.text = schedule?.day
-        
+//        for objData in Schedule{
+//            titleTextField.text = schedule?.day
+//        }
         
         //         Initialization code
     }
