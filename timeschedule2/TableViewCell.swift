@@ -29,8 +29,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
 //        for objData in Schedule{
 //            titleTextField.text = schedule?.day
 //        }
-        
-        //         Initialization code
+//         Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -62,7 +61,10 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         
         self.titleTextField.text = String((choice .row) + 1)
         date = scheduleArray[choice.row]
-        
+        try! realm.write{
+            date.day = titleTextField.text!
+            realm.add(date)
+        }
         time2.title = titleTextField.text
     }
     

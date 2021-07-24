@@ -75,6 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let time2 = Schedule()
+        
         try! realm.write() {
             realm.add(time2)
         }
