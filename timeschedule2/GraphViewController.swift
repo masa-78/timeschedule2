@@ -18,20 +18,17 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var chartView: ChartView! = ChartView()
     @IBOutlet var labelRate3:UILabel!
     var index: Int?
+    var allArray: Results<Sum>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         textRate.layer.cornerRadius = 10
-        
         textRate.layer.borderColor = UIColor.lightGray.cgColor
-        
         textRate.keyboardType = .numberPad
         textRate.text = "0"
-        
         buttonDraw.setTitleColor(UIColor.blue, for: .normal)
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
-        
         textRate.delegate = self
         
         self.view.addSubview(textRate)
@@ -39,6 +36,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
         self.view.addSubview(labelRate3)
+        
+        allArray = realm.objects(Sum.self)
         
         changeScreen()
                 
@@ -89,12 +88,20 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     @objc func touchUpButtonDraw(){
         drawChart()
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        
+        if let index = index {
+            print(index)
+            let all = objs[index].all
+        } else {
+            print("値が代入されていません")
+        }
+        
         let Total = Sum()
         
         try! realm.write {
             realm.add(Total)
         }
-        
         print("グラフ表示ボタンが押された!")
     }
     /**
@@ -139,8 +146,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
+//        let graph = Sum()
+//
+//        try! realm.write{
+//            realm.add(graph)
+//            print("成功")
+//        }
+        
         return true
     }
 }
