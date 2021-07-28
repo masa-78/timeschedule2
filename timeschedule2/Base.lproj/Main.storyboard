@@ -49,17 +49,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c7v-GT-nAo">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="4DK-Zf-Xu5">
-                                <connections>
-                                    <action selector="addBarButtonTapped:" destination="BYZ-38-t0r" id="8c4-Bb-u4L"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="save" id="Tn0-ca-ApH"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4DK-Zf-Xu5">
+                            <connections>
+                                <action selector="addBarButtonTapped:" destination="BYZ-38-t0r" id="8c4-Bb-u4L"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="SaveButton" destination="Tn0-ca-ApH" id="uVc-9a-3T8"/>
                         <outlet property="table" destination="2cx-fU-B4Q" id="6Y6-hQ-FDT"/>
                         <segue destination="g0v-RT-c0Q" kind="show" identifier="toNextViewController" id="EXR-nj-A9c"/>
                     </connections>
@@ -92,12 +88,7 @@
                             <constraint firstItem="gym-pV-K7m" firstAttribute="bottom" secondItem="34x-5X-uAJ" secondAttribute="bottom" id="se4-Z0-h9e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EaB-as-9LF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="txw-Tb-3BU"/>
-                        <connections>
-                            <outlet property="rightBarButtonItem" destination="txw-Tb-3BU" id="Z3P-zp-Rn2"/>
-                        </connections>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="EaB-as-9LF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NXp-8s-Kco" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,13 +11,13 @@ import RealmSwift
 class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableViewDataSource,  UITableViewDelegate{
     
     @IBOutlet var table: UITableView!
-    @IBOutlet var bar: UINavigationBar!
+//    @IBOutlet var bar: UINavigationBar!
     
     var hourArray:Results<Hour>!
     
     var addBarButtonItem: UIBarButtonItem!
     
-    var addButtonPressed = UIBarButtonItem?.self
+//    var addButtonPressed = UIBarButtonItem?.self
     
     var outputValue : String?
     
@@ -38,22 +38,22 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         print("Nyuryoku")
         
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
-        self.navigationItem.rightBarButtonItem = addBarButtonItem
+        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         
         
-        if let bar = bar {
-            bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
-            print(bar)
-        } else {
-            print("値が代入されていません")
-        }
-       
-        if let bar = bar {
-            bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-            print(bar)
-        } else {
-            print("値が代入されていません")
-        }
+//        if let bar = bar {
+//            bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
+//            print(bar)
+//        } else {
+//            print("値が代入されていません")
+//        }
+//
+//        if let bar = bar {
+//            bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+//            print(bar)
+//        } else {
+//            print("値が代入されていません")
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -161,6 +161,8 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        
+        print("+ボタンが押された")
     }
 }
 
