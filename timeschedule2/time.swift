@@ -23,7 +23,6 @@ class Sum: Object{
 
 class Hour: Object {
     //3画面
-
     @objc dynamic var title = ""//時間
     
 }

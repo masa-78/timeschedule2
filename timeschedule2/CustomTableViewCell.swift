@@ -19,8 +19,7 @@ class CustomTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDeleg
         // Configure the view for the selected state
     }
     func viewDidLoad() {
-//        titleTextField.delegate = self
-//        ContentTextView.delegate = self
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

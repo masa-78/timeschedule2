@@ -19,8 +19,9 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     var plan: [String:[String]] = [:]
     
+    var selected: Int!
+    
     @IBOutlet var table: UITableView!
-    @IBOutlet var SaveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         
@@ -54,10 +55,11 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNextViewController" {
+            let pageView = segue.destination as! PageViewController
+                pageView.nextIndex = selected
         }
     }
     //    画面遷移　segue
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -117,22 +119,12 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("/(indexPath.row)番目の行が選択されました。")
-        print(indexPath.row)
-        
         // セルの選択を解除
+        selected = indexPath.row
         table.deselectRow(at: indexPath, animated: true)
         //        indexpath.row
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextView = storyboard.instantiateViewController(withIdentifier: "View2") as! GraphViewController
-        let SecondView = storyboard.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
-        SecondView.index = indexPath.row
-        //        self.navigationController?.pushViewController(nextView, animated: true)
-        performSegue(withIdentifier: "toNextViewController", sender: indexPath.row)
+        performSegue(withIdentifier: "toNextViewController", sender: nil)
     }
     
     //  キーボードずらし

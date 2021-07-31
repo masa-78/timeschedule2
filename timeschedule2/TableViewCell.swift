@@ -16,7 +16,6 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     
     let realm = try! Realm()
     var dic: [String:String] = [:]
-    //    var timeArray: Results<Time>!
     var scheduleArray: Results<Schedule>!
     
     override func awakeFromNib() {
@@ -25,11 +24,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         scheduleArray = realm.objects(Schedule.self)
         let schedule: Schedule? = read()
         titleTextField.text = schedule?.day
-        
-//        for objData in Schedule{
-//            titleTextField.text = schedule?.day
-//        }
-//         Initialization code
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,11 +32,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         print("タップされました")
         // Configure the view for the selected state
     }
-    
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        titleTextField.resignFirstResponder()
-    //    }
-    
+
     func read() -> Schedule? {
         return realm.objects(Schedule.self).first
     }
@@ -80,8 +71,4 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         // TableViewを再読み込み.
         //        self.table.reloadData()
     }
-    
-    //    func dictionary(choice:indexPath) {
-    //        dic = [titleTextField:text!] = [:]
-    //    }
 }

@@ -76,9 +76,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         let widthValue = screenSize.width
         let heightValue = screenSize.height
         
-        //        textRate.frame = CGRect(x: widthValue/2-170, y: 100, width: 100, height:40)
-        //        labelRate.frame = CGRect(x: widthValue/2-70, y: 100, width: 40, height: 40)
-        //        buttonDraw.frame = CGRect(x: widthValue/2-30, y: 100, width: 200, height: 40)
         var drawWidth = widthValue * 0.7
         if (widthValue > heightValue){
             drawWidth = heightValue * 0.8
@@ -93,7 +90,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         if let index = index {
             print(index)
             let all = objs[index].all
-        } else {
+        }else {
             print("値が代入されていません")
         }
         
@@ -147,13 +144,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        let graph = Sum()
-//
-//        try! realm.write{
-//            realm.add(graph)
-//            print("成功")
-//        }
-        
         return true
     }
 }

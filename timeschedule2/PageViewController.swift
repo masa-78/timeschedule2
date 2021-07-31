@@ -11,8 +11,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var nextIndex: Int!
     var nextVC: Int!
     
-    //    var NSNotFound: Int!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewControllers([getSecond()], direction: .forward, animated: true, completion: nil)
@@ -34,71 +32,36 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func getThird() -> NyuryokuViewController {
-        return storyboard!.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
+        
+        let vc = storyboard!.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
+        vc.index = nextIndex
+       print(nextIndex!)
+        return vc
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if viewController.isKind(of: NyuryokuViewController.self) {
-            //          let nextVC = getSecond() as? GraphViewController
-            //          nextVC.recieved = date
             
             let nextVC = getSecond()
-            //            let nextIndex = getSecond()
-            //            nextVC.received = nextIndex
-            //            return nextVC
             return getSecond()
             
         } else {
             return nil }
-        
-        //        var Int : [Int]?
-        
-        //        guard let index = getFirst().index(ofAccessibilityElement: viewController), index != NSNotFound else  { return nil}
-        //        _ = index - 1
-        //                let nextIndex = index - 1
-        //        if index == 2 {
-        //        }
-        //        return nil
-        //
-        //        if index == 1 {
-        //                    if let nextVC = getSecond() {
-        //                    nextVC.received = nextIndex
-        //                    return nextVC
-        //                    }
-        //        }
-        //
-        //        else {
-        //            return nil
-        //        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         if viewController.isKind(of: GraphViewController.self){
-            //            let nextVC = getThird() as? NyuryokuViewController
-            //            nextVC.recieved = date
-            //            return getThird()
             
             let nextVC = getThird()
-            //            nextVC.received = nextIndex
+          
             return nextVC
         }
         else {
             return nil
         }
-        
-        //        guard let index = getFirst().index(of: viewController), index != NSNotFound else { return nil }
-        //        let nextIndex = index + 1
-        //
-        //        return nil
-        //        if index == 1 {
-        //
-        //        }
-        //        return nil
-        //    else do {
-        //    return nil
-        //    }
+     
     }
 }
 /*

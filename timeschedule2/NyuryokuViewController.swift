@@ -11,14 +11,9 @@ import RealmSwift
 class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableViewDataSource,  UITableViewDelegate{
     
     @IBOutlet var table: UITableView!
-//    @IBOutlet var bar: UINavigationBar!
     
     var hourArray:Results<Hour>!
-    
-    var addBarButtonItem: UIBarButtonItem!
-    
-//    var addButtonPressed = UIBarButtonItem?.self
-    
+   
     var outputValue : String?
     
     var resultHandler: ((String) -> Void)?
@@ -35,31 +30,12 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
         table.delegate = self
-        print("Nyuryoku")
-        
-        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
-        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
-        
-        
-//        if let bar = bar {
-//            bar.bottomAnchor.constraint(equalTo: table.topAnchor).isActive = true
-//            print(bar)
-//        } else {
-//            print("値が代入されていません")
-//        }
-//
-//        if let bar = bar {
-//            bar.topAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-//            print(bar)
-//        } else {
-//            print("値が代入されていません")
-//        }
-    }
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("NyuryokuViewController Will Appear")
-        print(index)
+        print(index!)
         self.table.reloadData()
     }
     
@@ -71,16 +47,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    func setuoNavigation() {
-//        let Nabutton1: UIBarButtonItem = UIBarButtonItem.init(
-//            style: UIBarButtonItem.Style.plain,
-//            target: self,
-//            action: #selector(Nabutton1Proc))
-//        
-//        self.navigationItem.rightBarButtonItems = [Nabutton1]
-//    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         
@@ -136,7 +103,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
