@@ -34,8 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         scheduleArray = realm.objects(Schedule.self)
         print(scheduleArray!)
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = "Day"
+        
         
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")
         

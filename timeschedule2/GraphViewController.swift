@@ -85,20 +85,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     @objc func touchUpButtonDraw(){
         drawChart()
-        let objs: Results<Schedule> = realm.objects(Schedule.self)
-        
-        if let index = index {
-            print(index)
-            let all = objs[index].all
-        }else {
-            print("値が代入されていません")
-        }
-        
-        let Total = Sum()
-        
-        try! realm.write {
-            realm.add(Total)
-        }
+       
         print("グラフ表示ボタンが押された!")
     }
     /**
@@ -144,6 +131,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let Total = objs[index!].time
+        if let index = index {
+            print(index)
+        }else {
+            print("値が代入されていません")
+        }
         return true
     }
 }

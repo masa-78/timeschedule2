@@ -172,6 +172,12 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="ckF-1w-5bx">
+                                        <barButtonItem key="backBarButtonItem" title="Day" id="1ni-hN-3Fs"/>
+                                        <barButtonItem key="leftBarButtonItem" title="back" id="JMz-qi-b7t">
+                                            <connections>
+                                                <action selector="backAction:" destination="4Dy-F5-bU7" id="s7f-7C-BZf"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Blp-Ok-DaP">
                                             <connections>
                                                 <action selector="addBarButtonTapped:" destination="4Dy-F5-bU7" id="oxF-Vj-jiN"/>

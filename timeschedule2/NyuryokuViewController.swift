@@ -26,7 +26,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         super.viewDidLoad()
         hourArray = realm.objects(Hour.self)
         print(hourArray!)
-        
+
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
         table.delegate = self
@@ -47,10 +47,14 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
+  
+    @IBAction func backAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
-        
         if let index = index {
             print(index)
             let time = objs[index].time
