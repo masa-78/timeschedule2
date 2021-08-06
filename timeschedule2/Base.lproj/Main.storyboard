@@ -101,8 +101,8 @@
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
                             </button>
-                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3J-BK-Ff5" customClass="ChartView" customModule="timeschedule2" customModuleProvider="target">
-                                <rect key="frame" x="103.66666666666669" y="44" width="207" height="448"/>
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o3J-BK-Ff5" customClass="ChartView" customModule="timeschedule2" customModuleProvider="target">
+                                <rect key="frame" x="103.66666666666669" y="92" width="207" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="達成度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye5-Cw-hWs">
@@ -110,22 +110,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-UB-4z9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Crc-pG-A2h">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="UX2-2k-NEF"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ogh-EH-av2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="xtS-Tx-wk2" secondAttribute="bottom" constant="20" id="15K-8p-pQ9"/>
-                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="height" secondItem="P0A-aG-uYH" secondAttribute="height" multiplier="0.5" id="4jy-om-Kfk"/>
                             <constraint firstItem="2pV-ZM-A1u" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="5u9-ER-PL1"/>
                             <constraint firstItem="TN2-dD-eck" firstAttribute="leading" secondItem="2pV-ZM-A1u" secondAttribute="trailing" constant="8" symbolic="YES" id="DRB-Y2-nYT"/>
                             <constraint firstItem="ye5-Cw-hWs" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="HGF-Xf-YD4"/>
                             <constraint firstItem="xtS-Tx-wk2" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="MpM-xa-3HV"/>
+                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="height" secondItem="P0A-aG-uYH" secondAttribute="height" multiplier="0.6" id="MwU-JB-vTb"/>
                             <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="2pV-ZM-A1u" secondAttribute="bottom" constant="55" id="Ugq-ax-T7b"/>
                             <constraint firstItem="2pV-ZM-A1u" firstAttribute="top" secondItem="ye5-Cw-hWs" secondAttribute="bottom" constant="8" symbolic="YES" id="W3R-1a-mD4"/>
-                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="top" secondItem="Ogh-EH-av2" secondAttribute="top" id="WVP-U1-GGB"/>
                             <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="TN2-dD-eck" secondAttribute="bottom" constant="55" id="dfS-dL-v3G"/>
                             <constraint firstItem="o3J-BK-Ff5" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="uQ9-us-hNz"/>
                             <constraint firstItem="o3J-BK-Ff5" firstAttribute="width" secondItem="P0A-aG-uYH" secondAttribute="width" multiplier="0.5" id="vRW-AC-DYn"/>
+                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="top" secondItem="bzf-UB-4z9" secondAttribute="bottom" constant="10" id="zkw-Cy-JRF"/>
                         </constraints>
                     </view>
                     <connections>
@@ -173,11 +181,6 @@
                                 <items>
                                     <navigationItem title="Title" id="ckF-1w-5bx">
                                         <barButtonItem key="backBarButtonItem" title="Day" id="1ni-hN-3Fs"/>
-                                        <barButtonItem key="leftBarButtonItem" title="back" id="JMz-qi-b7t">
-                                            <connections>
-                                                <action selector="backAction:" destination="4Dy-F5-bU7" id="s7f-7C-BZf"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Blp-Ok-DaP">
                                             <connections>
                                                 <action selector="addBarButtonTapped:" destination="4Dy-F5-bU7" id="oxF-Vj-jiN"/>
