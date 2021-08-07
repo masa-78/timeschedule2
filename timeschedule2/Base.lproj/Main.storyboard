@@ -72,7 +72,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj7-0A-Gfr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1371" y="80"/>
+            <point key="canvasLocation" x="1336" y="80"/>
         </scene>
         <!--Graph View Controller-->
         <scene sceneID="OUf-YP-cae">

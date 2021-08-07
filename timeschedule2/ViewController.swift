@@ -135,6 +135,11 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print("Notificationを発行")
     }
     
+    @objc
+    func onTapBackButton(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // Notificationを削除
     func removeObserver() {
         let notification = NotificationCenter.default

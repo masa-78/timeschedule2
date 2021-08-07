@@ -32,7 +32,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func getThird() -> NyuryokuViewController {
-        
         let vc = storyboard!.instantiateViewController(withIdentifier: "View3") as! NyuryokuViewController
         vc.index = nextIndex
        print(nextIndex!)

@@ -48,7 +48,6 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         self.view.endEditing(true)
     }
     
-  
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -61,7 +60,6 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         } else {
             print("値が代入されていません")
         }
-        
         return hourArray.count
     }
     
@@ -102,11 +100,9 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         // TableViewを再読み込み.
         self.table.reloadData()
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         
         let objs: Results<Schedule> = realm.objects(Schedule.self)
