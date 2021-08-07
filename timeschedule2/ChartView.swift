@@ -26,7 +26,6 @@ class ChartView: UIView {
     private func drawBaseChart(){
         let shapeFrame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         caShapeLayerForBase.frame = shapeFrame
-        
         caShapeLayerForBase.strokeColor = UIColor(displayP3Red: 1, green: 0.8, blue: 0.4, alpha: 1.0).cgColor
         caShapeLayerForBase.fillColor = UIColor.clear.cgColor
         caShapeLayerForBase.lineWidth = 70

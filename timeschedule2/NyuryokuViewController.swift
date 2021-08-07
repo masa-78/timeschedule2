@@ -22,6 +22,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     
     let realm = try! Realm()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hourArray = realm.objects(Hour.self)
@@ -35,7 +36,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("NyuryokuViewController Will Appear")
-        print(index!)
+
         self.table.reloadData()
     }
     
@@ -47,10 +48,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    @IBAction func backAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)

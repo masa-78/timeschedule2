@@ -36,7 +36,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         navigationItem.title = "Day"
         
-        
         table.register (UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: "TableViewCell")
         
         table.dataSource = self
@@ -55,8 +54,8 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNextViewController" {
-            let pageView = segue.destination as! PageViewController
-                pageView.nextIndex = selected
+            let graphView = segue.destination as! GraphViewController
+                graphView.index = selected
         }
     }
     //    画面遷移　segue
@@ -119,11 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // セルの選択を解除
         selected = indexPath.row
-        table.deselectRow(at: indexPath, animated: true)
-        //        indexpath.row
-        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "toNextViewController", sender: nil)
     }
     

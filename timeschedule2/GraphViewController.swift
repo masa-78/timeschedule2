@@ -17,6 +17,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
     @IBOutlet var labelRate3:UILabel!
+    @IBOutlet var NextbarButtonItem: UIBarButtonItem!
+
     var index: Int?
     var allArray: Results<Sum>!
     
@@ -70,7 +72,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowNextViewController" {
+            let nextView = segue.destination as! NyuryokuViewController
+                nextView.index = index
+        }
+    }
+  
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
         let widthValue = screenSize.width
@@ -80,7 +89,10 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         if (widthValue > heightValue){
             drawWidth = heightValue * 0.8
         }
-        //        chartView.frame = CGRect(x: widthValue/2-drawWidth/2, y: 60, width: drawWidth, height: drawWidth)
+    }
+    
+    @IBAction func goNextButton(_ sender: Any) {
+        performSegue(withIdentifier: "ShowNextViewController", sender: nil)
     }
     
     @objc func touchUpButtonDraw(){

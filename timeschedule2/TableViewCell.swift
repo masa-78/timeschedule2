@@ -56,7 +56,6 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
             date.day = titleTextField.text!
             realm.add(date)
         }
-        time2.title = titleTextField.text
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
