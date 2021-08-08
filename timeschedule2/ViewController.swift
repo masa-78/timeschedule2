@@ -30,6 +30,12 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:  #selector(addBarButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+                title:  "Day",
+                style:  .plain,
+                target: nil,
+                action: nil
+            )
        
         scheduleArray = realm.objects(Schedule.self)
         print(scheduleArray!)

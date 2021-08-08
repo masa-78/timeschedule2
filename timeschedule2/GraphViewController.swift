@@ -17,7 +17,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
     @IBOutlet var labelRate3:UILabel!
-    @IBOutlet var NextbarButtonItem: UIBarButtonItem!
+    @IBOutlet var table: UITableView!
+  
 
     var index: Int?
     var allArray: Results<Sum>!
@@ -25,6 +26,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         textRate.layer.cornerRadius = 10
         textRate.layer.borderColor = UIColor.lightGray.cgColor
         textRate.keyboardType = .numberPad
@@ -33,11 +35,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
         textRate.delegate = self
         
-        self.view.addSubview(textRate)
-        self.view.addSubview(labelRate)
+//        self.view.addSubview(textRate)
+//        self.view.addSubview(labelRate)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
-        self.view.addSubview(labelRate3)
+       
+//        self.view.addSubview(labelRate3)
         
         allArray = realm.objects(Sum.self)
         
@@ -94,6 +97,37 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     @IBAction func goNextButton(_ sender: Any) {
         performSegue(withIdentifier: "ShowNextViewController", sender: nil)
     }
+    
+    
+    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
+        
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        var textField = UITextField()
+        let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
+            
+            let schedule = objs[self.index!]
+            let time = schedule.time
+            let hour = Hour()
+            hour.title = textField.text!
+            try! self.realm.write {
+                self.realm.add(hour)
+                time.append(hour)
+            }
+            //            self.timeArray.append(time)
+            self.table.reloadData()
+        }
+        alert.addTextField {
+            (alertTextField) in
+            alertTextField.placeholder = "新しいアイテム"
+            textField =  alertTextField
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+        print("+ボタンが押された")
+    }
+   
     
     @objc func touchUpButtonDraw(){
         drawChart()

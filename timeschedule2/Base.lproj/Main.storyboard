@@ -71,22 +71,21 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0A-aG-uYH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2pV-ZM-A1u">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2pV-ZM-A1u">
                                 <rect key="frame" x="167" y="773" width="80" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="3hl-rX-4pE"/>
-                                    <constraint firstAttribute="height" constant="34" id="Nhf-3y-xyz"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-dD-eck">
-                                <rect key="frame" x="254.99999999999997" y="786.66666666666663" width="15.666666666666657" height="20.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-dD-eck">
+                                <rect key="frame" x="255" y="786.66666666666663" width="15.666666666666629" height="20.333333333333371"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtS-Tx-wk2">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtS-Tx-wk2">
                                 <rect key="frame" x="168.66666666666666" y="812" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="グラフ表示">
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
@@ -95,8 +94,9 @@
                                 <rect key="frame" x="103.66666666666669" y="92" width="207" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="達成度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye5-Cw-hWs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="達成度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye5-Cw-hWs">
                                 <rect key="frame" x="168" y="745" width="78" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -104,28 +104,19 @@
                         <viewLayoutGuide key="safeArea" id="Ogh-EH-av2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="xtS-Tx-wk2" secondAttribute="bottom" constant="20" id="15K-8p-pQ9"/>
-                            <constraint firstItem="2pV-ZM-A1u" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="5u9-ER-PL1"/>
-                            <constraint firstItem="TN2-dD-eck" firstAttribute="leading" secondItem="2pV-ZM-A1u" secondAttribute="trailing" constant="8" symbolic="YES" id="DRB-Y2-nYT"/>
-                            <constraint firstItem="ye5-Cw-hWs" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="HGF-Xf-YD4"/>
-                            <constraint firstItem="xtS-Tx-wk2" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="MpM-xa-3HV"/>
                             <constraint firstItem="o3J-BK-Ff5" firstAttribute="height" secondItem="P0A-aG-uYH" secondAttribute="height" multiplier="0.6" id="MwU-JB-vTb"/>
-                            <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="2pV-ZM-A1u" secondAttribute="bottom" constant="55" id="Ugq-ax-T7b"/>
-                            <constraint firstItem="2pV-ZM-A1u" firstAttribute="top" secondItem="ye5-Cw-hWs" secondAttribute="bottom" constant="8" symbolic="YES" id="W3R-1a-mD4"/>
-                            <constraint firstItem="Ogh-EH-av2" firstAttribute="bottom" secondItem="TN2-dD-eck" secondAttribute="bottom" constant="55" id="dfS-dL-v3G"/>
                             <constraint firstItem="o3J-BK-Ff5" firstAttribute="centerX" secondItem="P0A-aG-uYH" secondAttribute="centerX" id="uQ9-us-hNz"/>
                             <constraint firstItem="o3J-BK-Ff5" firstAttribute="width" secondItem="P0A-aG-uYH" secondAttribute="width" multiplier="0.5" id="vRW-AC-DYn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e72-sG-q17">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="nuw-P4-DBP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cDk-tm-0Hn">
                             <connections>
-                                <action selector="goNextButton:" destination="KCh-vg-JJE" id="LsE-VG-xNJ"/>
+                                <action selector="addBarButtonTapped:" destination="KCh-vg-JJE" id="fRo-21-af0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="NextbarButtonItem" destination="nuw-P4-DBP" id="BXr-Ms-35x"/>
                         <outlet property="buttonDraw" destination="xtS-Tx-wk2" id="Nlx-n5-z2f"/>
                         <outlet property="chartView" destination="o3J-BK-Ff5" id="aJJ-dD-ihv"/>
                         <outlet property="labelRate" destination="TN2-dD-eck" id="iz5-gg-sTP"/>

@@ -8,12 +8,12 @@
 import UIKit
 
 class ChartView: UIView {
-    
+  
     let caShapeLayerForBase:CAShapeLayer = CAShapeLayer.init()
     let caShapeLayerForValue:CAShapeLayer = CAShapeLayer.init()
     
     func drawChart(rate:Double){
-        drawBaseChart()
+//        drawBaseChart()
         drawValueChart(rate: rate)
         
         let caBasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -21,22 +21,24 @@ class ChartView: UIView {
         caBasicAnimation.fromValue = 0.0
         caBasicAnimation.toValue = 1.0
         caShapeLayerForValue.add(caBasicAnimation, forKey: "chartAnimation")
+        
+//        self.ChartView.centerText = "テストデータ"
     }
     //    奥の円
-    private func drawBaseChart(){
-        let shapeFrame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        caShapeLayerForBase.frame = shapeFrame
-        caShapeLayerForBase.strokeColor = UIColor(displayP3Red: 1, green: 0.8, blue: 0.4, alpha: 1.0).cgColor
-        caShapeLayerForBase.fillColor = UIColor.clear.cgColor
-        caShapeLayerForBase.lineWidth = 70
-        caShapeLayerForBase.lineCap = .round
-        
-        let startAngle:CGFloat = CGFloat(0.0)
-        let endAngle:CGFloat = CGFloat(Double.pi * 2.0)
-        
-        caShapeLayerForBase.path = UIBezierPath.init(arcCenter: CGPoint.init(x: shapeFrame.size.width / 2.0, y: shapeFrame.size.height / 2.0),radius: shapeFrame.size.width / 2.0,startAngle: startAngle,endAngle: endAngle,clockwise: true).cgPath
-        self.layer.addSublayer(caShapeLayerForBase)
-    }
+//    private func drawBaseChart(){
+//        let shapeFrame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+//        caShapeLayerForBase.frame = shapeFrame
+//        caShapeLayerForBase.strokeColor = UIColor(displayP3Red: 1, green: 0.8, blue: 0.4, alpha: 1.0).cgColor
+//        caShapeLayerForBase.fillColor = UIColor.clear.cgColor
+//        caShapeLayerForBase.lineWidth = 70
+//        caShapeLayerForBase.lineCap = .round
+//
+//        let startAngle:CGFloat = CGFloat(0.0)
+//        let endAngle:CGFloat = CGFloat(Double.pi * 2.0)
+//
+//        caShapeLayerForBase.path = UIBezierPath.init(arcCenter: CGPoint.init(x: shapeFrame.size.width / 2.0, y: shapeFrame.size.height / 2.0),radius: shapeFrame.size.width / 2.0,startAngle: startAngle,endAngle: endAngle,clockwise: true).cgPath
+//        self.layer.addSublayer(caShapeLayerForBase)
+//    }
     
     //手前の円
     private func drawValueChart(rate:Double){
@@ -45,7 +47,7 @@ class ChartView: UIView {
         caShapeLayerForValue.frame = shapeFrame
         
         //CAShareLayerのデザインを定義
-        caShapeLayerForValue.strokeColor = UIColor(displayP3Red: 1, green: 0.4, blue: 0.4, alpha: 1).cgColor
+        caShapeLayerForValue.strokeColor = UIColor(displayP3Red: 0.5, green: 0.8, blue: 0.4, alpha: 1).cgColor
         caShapeLayerForValue.fillColor = UIColor.clear.cgColor
         caShapeLayerForValue.lineWidth = 70
         caShapeLayerForValue.lineCap = .round
