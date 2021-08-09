@@ -8,47 +8,50 @@
 import UIKit
 import RealmSwift
 
-class GraphViewController: UIViewController, UITextFieldDelegate {
-    
+class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     let realm = try! Realm()
     
-    @IBOutlet var textRate:UITextField!
-    @IBOutlet var labelRate:UILabel! = UILabel()
+    //    @IBOutlet var textRate:UITextField!
+    //    @IBOutlet var labelRate:UILabel! = UILabel()
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
-    @IBOutlet var labelRate3:UILabel!
+    //    @IBOutlet var labelRate3:UILabel!
     @IBOutlet var table: UITableView!
-  
-
+    
+    var outputValue : String?
+    var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
+    var todoList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        textRate.layer.cornerRadius = 10
-        textRate.layer.borderColor = UIColor.lightGray.cgColor
-        textRate.keyboardType = .numberPad
-        textRate.text = "0"
         buttonDraw.setTitleColor(UIColor.blue, for: .normal)
         buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
-        textRate.delegate = self
-        
-//        self.view.addSubview(textRate)
-//        self.view.addSubview(labelRate)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
-       
-//        self.view.addSubview(labelRate3)
-        
         allArray = realm.objects(Sum.self)
+        print(allArray!)
         
         changeScreen()
-                
+        table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
+        table.dataSource = self
+        table.delegate = self
+        
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
+        
+        
+        //        textRate.layer.cornerRadius = 10
+        //        textRate.layer.borderColor = UIColor.lightGray.cgColor
+        //        textRate.keyboardType = .numberPad
+        //        textRate.text = "0"
+        //        textRate.delegate = self
+        //        self.view.addSubview(textRate)
+        //        self.view.addSubview(labelRate)
+        //        self.view.addSubview(labelRate3)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -64,6 +67,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         print("GraphViewController Will Appear")
         self.configureObserver()
+        self.table.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,14 +79,30 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
- 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowNextViewController" {
-            let nextView = segue.destination as! NyuryokuViewController
-                nextView.index = index
-        }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ShowNextViewController" {
+//            let nextView = segue.destination as! NyuryokuViewController
+//            nextView.index = index
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at:indexPath)
+        // チェックマークを入れる
+        cell?.accessoryType = .checkmark
+        
+        // セルを選択した時の背景の変化を遅くする
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-  
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at:indexPath)
+        
+        // チェックマークを外す
+        cell?.accessoryType = .none
+    }
+    
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
         let widthValue = screenSize.width
@@ -94,13 +114,57 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func goNextButton(_ sender: Any) {
-        performSegue(withIdentifier: "ShowNextViewController", sender: nil)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        if let index = index {
+            print(index)
+            let time = objs[index].time
+        } else {
+            print("値が代入されていません")
+        }
+        //        return hourArray.count
+        return allArray.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let time = objs[index!].time
+        if let index = index {
+            print(index)
+        } else {
+            print("値が代入されていません")
+        }
+        cell.textLabel?.text = time[indexPath.row].title
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let objs: Results<Schedule> = realm.objects(Schedule.self)
+            let schedule = objs[self.index!]
+            let time3 = Sum()
+            //            time3.title = TextField.text
+            let time = schedule.time
+            let obj = time[indexPath.row]
+            // アイテム削除処理
+            
+            try! realm.write(){
+                //              timeArray.remove(at: indexPath.row)
+                let item = (allArray[indexPath.row])
+                realm.delete(item)
+            }
+        }
+        // TableViewを再読み込み.
+        self.table.reloadData()
+    }
+    
+    //    @IBAction func goNextButton(_ sender: Any) {
+    //        performSegue(withIdentifier: "ShowNextViewController", sender: nil)
+    //    }
     
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
@@ -108,13 +172,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
             
             let schedule = objs[self.index!]
             let time = schedule.time
-            let hour = Hour()
-            hour.title = textField.text!
+            let sum = Sum()
+            sum.Title = textField.text!
             try! self.realm.write {
-                self.realm.add(hour)
-                time.append(hour)
+                self.realm.add(sum)
+//                time.append(sum)
             }
-            //            self.timeArray.append(time)
+//            self.allArray.append(time)
             self.table.reloadData()
         }
         alert.addTextField {
@@ -127,19 +191,19 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         
         print("+ボタンが押された")
     }
-   
+    
     
     @objc func touchUpButtonDraw(){
         drawChart()
-       
+        
         print("グラフ表示ボタンが押された!")
     }
     /**
      グラフを表示
      */
     private func drawChart(){
-        let rate = Double(textRate.text!)
-        chartView.drawChart(rate: rate!)
+        //        let rate = Double(textRate.text!)
+        //        chartView.drawChart(rate: rate!)
     }
     //    キーボードずらし
     func configureObserver() {
@@ -187,13 +251,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 }
-// override func viewWillDisappear(_ animated: Bool ) {
-//       super.viewWillDisappear (animated: true)
-//        print("GraphViewController Will Disappear")
-//    }
-
-
-
 /*
  // MARK: - Navigation
  

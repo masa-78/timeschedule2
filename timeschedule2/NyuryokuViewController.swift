@@ -8,8 +8,9 @@
 import UIKit
 import RealmSwift
 
-class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableViewDataSource,  UITableViewDelegate{
-    
+class NyuryokuViewController: UIViewController, UITextFieldDelegate
+//                              UITableViewDataSource,  UITableViewDelegate
+{
     @IBOutlet var table: UITableView!
     
     var hourArray:Results<Hour>!
@@ -28,9 +29,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
         hourArray = realm.objects(Hour.self)
         print(hourArray!)
 
-        table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
-        table.dataSource = self
-        table.delegate = self
+        
         }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,29 +49,29 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate , UITableVie
     }
 
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let objs: Results<Schedule> = realm.objects(Schedule.self)
-        if let index = index {
-            print(index)
-            let time = objs[index].time
-        } else {
-            print("値が代入されていません")
-        }
-        return hourArray.count
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let objs: Results<Schedule> = realm.objects(Schedule.self)
+//        if let index = index {
+//            print(index)
+//            let time = objs[index].time
+//        } else {
+//            print("値が代入されていません")
+//        }
+//        return hourArray.count
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
-        let objs: Results<Schedule> = realm.objects(Schedule.self)
-        let time = objs[index!].time
-        if let index = index {
-            print(index)
-        } else {
-            print("値が代入されていません")
-        }
-        cell.textLabel?.text = time[indexPath.row].title
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
+//        let objs: Results<Schedule> = realm.objects(Schedule.self)
+//        let time = objs[index!].time
+//        if let index = index {
+//            print(index)
+//        } else {
+//            print("値が代入されていません")
+//        }
+//        cell.textLabel?.text = time[indexPath.row].title
+//        return cell
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
