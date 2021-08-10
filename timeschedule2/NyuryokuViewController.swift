@@ -13,7 +13,7 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet var table: UITableView!
     
-    var hourArray:Results<Hour>!
+//    var hourArray:Results<Hour>!
    
     var outputValue : String?
     
@@ -26,8 +26,8 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hourArray = realm.objects(Hour.self)
-        print(hourArray!)
+//        hourArray = realm.objects(Hour.self)
+//        print(hourArray!)
 
         
         }
@@ -82,16 +82,16 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate
         if editingStyle == .delete{
             let objs: Results<Schedule> = realm.objects(Schedule.self)
             let schedule = objs[self.index!]
-            let time3 = Hour()
+//            let time3 = Hour()
             //            time3.title = TextField.text
-            let time = schedule.time
-            let obj = time[indexPath.row]
+//            let time = schedule.time
+//            let obj = time[indexPath.row]
             // アイテム削除処理
             
             try! realm.write(){
                 //              timeArray.remove(at: indexPath.row)
-                let item = (hourArray[indexPath.row])
-                realm.delete(item)
+//                let item = (hourArray[indexPath.row])
+//                realm.delete(item)
             }
         }
         // TableViewを再読み込み.
@@ -108,12 +108,12 @@ class NyuryokuViewController: UIViewController, UITextFieldDelegate
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
             
             let schedule = objs[self.index!]
-            let time = schedule.time
-            let hour = Hour()
-            hour.title = textField.text!
+//            let time = schedule.time
+//            let hour = Hour()
+//            hour.title = textField.text!
             try! self.realm.write {
-                self.realm.add(hour)
-                time.append(hour)
+//                self.realm.add(hour)
+//                time.append(hour)
             }
             //            self.timeArray.append(time)
             self.table.reloadData()

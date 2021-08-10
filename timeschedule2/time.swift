@@ -13,15 +13,15 @@ class Schedule: Object{
     @objc dynamic var day = ""//日にち（1画面）
     
     var all = List<Sum>()
-    var time = List<Hour>()
+//    var time = List<Hour>()
 }
 
 class Sum: Object{
     @objc dynamic var total = ""//2画面
-    @objc dynamic var Title = ""//時間
-}
-
-class Hour: Object {
-//    3画面
     @objc dynamic var title = ""//時間
 }
+
+//class Hour: Object {
+//    3画面
+//    @objc dynamic var title = ""//時間
+//}

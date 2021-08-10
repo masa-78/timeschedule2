@@ -126,6 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selected = indexPath.row
         performSegue(withIdentifier: "toNextViewController", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //  キーボードずらし

@@ -11,7 +11,7 @@ import RealmSwift
 class TableViewCell: UITableViewCell,UITextFieldDelegate{
     @IBOutlet var titleTextField: UITextField!
     
-    var time: Hour!
+    var time: Sum!
     var date: Schedule!
     
     let realm = try! Realm()

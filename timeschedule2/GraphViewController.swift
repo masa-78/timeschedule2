@@ -42,16 +42,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
-        
-        
-        //        textRate.layer.cornerRadius = 10
-        //        textRate.layer.borderColor = UIColor.lightGray.cgColor
-        //        textRate.keyboardType = .numberPad
-        //        textRate.text = "0"
-        //        textRate.delegate = self
-        //        self.view.addSubview(textRate)
-        //        self.view.addSubview(labelRate)
-        //        self.view.addSubview(labelRate3)
+ 
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -79,14 +70,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ShowNextViewController" {
-//            let nextView = segue.destination as! NyuryokuViewController
-//            nextView.index = index
-//        }
-//    }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at:indexPath)
@@ -118,7 +102,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         if let index = index {
             print(index)
-            let time = objs[index].time
+            let time = objs[index].all
         } else {
             print("値が代入されていません")
         }
@@ -129,7 +113,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
         let objs: Results<Schedule> = realm.objects(Schedule.self)
-        let time = objs[index!].time
+        let time = objs[index!].all
         if let index = index {
             print(index)
         } else {
@@ -145,7 +129,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             let schedule = objs[self.index!]
             let time3 = Sum()
             //            time3.title = TextField.text
-            let time = schedule.time
+            let time = schedule.all
             let obj = time[indexPath.row]
             // アイテム削除処理
             
@@ -171,12 +155,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
             
             let schedule = objs[self.index!]
-            let time = schedule.time
+            let time = schedule.all
             let sum = Sum()
-            sum.Title = textField.text!
+            sum.title = textField.text!
             try! self.realm.write {
                 self.realm.add(sum)
-//                time.append(sum)
+                time.append(sum)
             }
 //            self.allArray.append(time)
             self.table.reloadData()
@@ -242,7 +226,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let objs: Results<Schedule> = realm.objects(Schedule.self)
-        let Total = objs[index!].time
+        let Total = objs[index!].all
         if let index = index {
             print(index)
         }else {
