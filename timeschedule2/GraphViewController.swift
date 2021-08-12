@@ -10,12 +10,9 @@ import RealmSwift
 
 class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     let realm = try! Realm()
-    
-    //    @IBOutlet var textRate:UITextField!
-    //    @IBOutlet var labelRate:UILabel! = UILabel()
+ 
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
-    //    @IBOutlet var labelRate3:UILabel!
     @IBOutlet var table: UITableView!
     
     var outputValue : String?
@@ -72,7 +69,10 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        // チェック状態を反転してリロードする
+                allArray[indexPath.row] = !allArray[indexPath.row]
+                table.reloadData()
         let cell = tableView.cellForRow(at:indexPath)
         // チェックマークを入れる
         cell?.accessoryType = .checkmark
@@ -106,12 +106,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         } else {
             print("値が代入されていません")
         }
-        //        return hourArray.count
         return allArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath as IndexPath)
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].all
         if let index = index {
@@ -120,6 +119,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             print("値が代入されていません")
         }
         cell.textLabel?.text = time[indexPath.row].title
+        
+        if allArray[indexPath.row] {
+                    cell.accessoryType = .checkmark
+                } else {
+                    cell.accessoryType = .none
+                }
         return cell
     }
     
@@ -142,12 +147,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         // TableViewを再読み込み.
         self.table.reloadData()
     }
-    
-    //    @IBAction func goNextButton(_ sender: Any) {
-    //        performSegue(withIdentifier: "ShowNextViewController", sender: nil)
-    //    }
-    
-    
+
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
