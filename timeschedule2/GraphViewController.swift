@@ -71,7 +71,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         // チェック状態を反転してリロードする
-                allArray[indexPath.row] = !allArray[indexPath.row]
+        allArray[indexPath.row] = !allArray[indexPath.row]
                 table.reloadData()
         let cell = tableView.cellForRow(at:indexPath)
         // チェックマークを入れる
