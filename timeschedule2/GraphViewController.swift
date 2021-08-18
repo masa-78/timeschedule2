@@ -14,12 +14,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
     @IBOutlet var table: UITableView!
+    @IBOutlet var ThemeTextField: UITextField!
     
     var outputValue : String?
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
     var todoList = [String]()
+    var assignment :Sum!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +73,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         // チェック状態を反転してリロードする
-        allArray[indexPath.row] = !allArray[indexPath.row]
+//        allArray[indexPath.row] = !allArray[indexPath.row]
                 table.reloadData()
         let cell = tableView.cellForRow(at:indexPath)
         // チェックマークを入れる
@@ -120,11 +122,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         }
         cell.textLabel?.text = time[indexPath.row].title
         
-        if allArray[indexPath.row] {
-                    cell.accessoryType = .checkmark
-                } else {
-                    cell.accessoryType = .none
-                }
+//        if allArray[indexPath.row] {
+//                    cell.accessoryType = .checkmark
+//                } else {
+//                    cell.accessoryType = .none
+//                }
         return cell
     }
     
@@ -148,6 +150,17 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         self.table.reloadData()
     }
 
+    func  textFieldShouldReturn(choice:IndexPath){
+        
+        self.ThemeTextField.text = "Title"
+        assignment = allArray[choice.row]
+        try! realm.write{
+            assignment.title = ThemeTextField.text!
+            realm.add(assignment)
+        }
+    }
+    
+    
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
