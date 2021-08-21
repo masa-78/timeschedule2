@@ -14,7 +14,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     @IBOutlet var buttonDraw:UIButton! = UIButton()
     @IBOutlet var chartView: ChartView! = ChartView()
     @IBOutlet var table: UITableView!
-    @IBOutlet var ThemeTextField: UITextField!
     
     var outputValue : String?
     var resultHandler: ((String) -> Void)?
@@ -149,17 +148,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         // TableViewを再読み込み.
         self.table.reloadData()
     }
-
-    func  textFieldShouldReturn(choice:IndexPath){
-        
-        self.ThemeTextField.text = "Title"
-        assignment = allArray[choice.row]
-        try! realm.write{
-            assignment.title = ThemeTextField.text!
-            realm.add(assignment)
-        }
-    }
-    
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
@@ -189,6 +177,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("+ボタンが押された")
     }
     
+    @IBAction func PlayBarButtonTapped(_ sender: UIBarButtonItem) {
+        drawChart()
+    }
     
     @objc func touchUpButtonDraw(){
         drawChart()
