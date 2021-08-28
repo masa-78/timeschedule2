@@ -108,7 +108,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             // アイテム削除処理
-            
             try! realm.write{
                 let item = (scheduleArray[indexPath.row])
                 realm.delete(item)

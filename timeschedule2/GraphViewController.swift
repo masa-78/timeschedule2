@@ -21,6 +21,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var allArray: Results<Sum>!
     var todoList = [String]()
     var assignment :Sum!
+    var checkdoArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,22 +73,19 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         // チェック状態を反転してリロードする
-//        allArray[indexPath.row] = !allArray[indexPath.row]
                 table.reloadData()
         let cell = tableView.cellForRow(at:indexPath)
-        // チェックマークを入れる
-        cell?.accessoryType = .checkmark
-        
+ 
+        if(cell?.accessoryType == UITableViewCell.AccessoryType.none){
+            cell?.accessoryType = .checkmark
+        }else{
+            cell?.accessoryType = .none
+        }
         // セルを選択した時の背景の変化を遅くする
         tableView.deselectRow(at: indexPath, animated: true)
+        print("チェックされた")
     }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at:indexPath)
-        
-        // チェックマークを外す
-        cell?.accessoryType = .none
-    }
-    
+
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
         let widthValue = screenSize.width
@@ -121,11 +119,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         }
         cell.textLabel?.text = time[indexPath.row].title
         
-//        if allArray[indexPath.row] {
-//                    cell.accessoryType = .checkmark
-//                } else {
-//                    cell.accessoryType = .none
-//                }
+        if (checkdoArray.contains(indexPath.row)){
+            cell.accessoryType = .checkmark
+                }else{
+                    cell.accessoryType = .none
+                }
         return cell
     }
     

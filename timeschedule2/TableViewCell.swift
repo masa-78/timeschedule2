@@ -10,8 +10,7 @@ import RealmSwift
 
 class TableViewCell: UITableViewCell,UITextFieldDelegate{
     @IBOutlet var titleTextField: UITextField!
-    
-    var time: Sum!
+ 
     var date: Schedule!
     
     let realm = try! Realm()
@@ -24,6 +23,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         scheduleArray = realm.objects(Schedule.self)
         let schedule: Schedule? = read()
         titleTextField.text = schedule?.day
+        
 
     }
     
@@ -40,6 +40,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
         //        self.titleTextField.text = ""
         titleTextField.resignFirstResponder()
+        
         try! realm.write {
             date.day = titleTextField.text!
             realm.add(date)
@@ -48,7 +49,6 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     }
     
     func  textFieldShouldReturn(choice:IndexPath){
-        let time2 = Schedule()
         
         self.titleTextField.text = String((choice .row) + 1)
         date = scheduleArray[choice.row]
