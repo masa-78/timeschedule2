@@ -22,6 +22,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var todoList = [String]()
     var assignment :Sum!
     var checkdoArray = [Int]()
+    var checkedCell = [IndexPath]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +125,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                 }else{
                     cell.accessoryType = .none
                 }
+        
+        time.append(checkdoArray)
         return cell
     }
     
