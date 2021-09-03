@@ -19,10 +19,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
-    var todoList = [String]()
-    var assignment :Sum!
     var checkdoArray = [Int]()
-    var checkedCell = [IndexPath]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +40,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
+    
  
     }
     
@@ -73,8 +72,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        // チェック状態を反転してリロードする
-                table.reloadData()
+      
         let cell = tableView.cellForRow(at:indexPath)
  
         if(cell?.accessoryType == UITableViewCell.AccessoryType.none){
@@ -85,7 +83,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         // セルを選択した時の背景の変化を遅くする
         tableView.deselectRow(at: indexPath, animated: true)
         print("チェックされた")
+      
+        // チェック状態を反転してリロードする
+                table.reloadData()
     }
+   
 
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
@@ -125,7 +127,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                 }else{
                     cell.accessoryType = .none
                 }
-        
+
         time.append(checkdoArray)
         return cell
     }
