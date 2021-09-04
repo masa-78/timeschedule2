@@ -19,19 +19,20 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
-    var checkdoArray = [Int]()
     
+    var checkmarkArray: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buttonDraw.setTitleColor(UIColor.blue, for: .normal)
-        buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
+//        buttonDraw.setTitleColor(UIColor.blue, for: .normal)
+//        buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
         allArray = realm.objects(Sum.self)
+//        checkdoArray = realm.objects(Sum.self)
         print(allArray!)
-        
+ 
         changeScreen()
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
         table.dataSource = self
@@ -40,7 +41,15 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         //        drawChart()
         // Do any additional setup after loading the view.
-    
+     
+        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
+        for _ in 0 ... allArray.count - 1 {
+                   checkmarkArray.append(false)
+               }
+            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+                   } else {
+                       checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+        }
  
     }
     
@@ -69,17 +78,25 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    var number: Int = 0
+    var checkcount: Int = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-      
+        
         let cell = tableView.cellForRow(at:indexPath)
- 
+        checkcount = allArray.count
+        
+        checkmarkArray[indexPath.row] = changeBool(value: checkmarkArray[indexPath.row])
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+        
         if(cell?.accessoryType == UITableViewCell.AccessoryType.none){
             cell?.accessoryType = .checkmark
+            number = number + 1
         }else{
             cell?.accessoryType = .none
+            number = number - 1
         }
+        drawChart()
         // セルを選択した時の背景の変化を遅くする
         tableView.deselectRow(at: indexPath, animated: true)
         print("チェックされた")
@@ -88,6 +105,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                 table.reloadData()
     }
    
+    func changeBool(value: Bool) -> Bool {
+          if value == true {
+              return false
+          } else {
+              return true
+          }
+      }
 
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
@@ -121,14 +145,18 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             print("値が代入されていません")
         }
         cell.textLabel?.text = time[indexPath.row].title
-        
-        if (checkdoArray.contains(indexPath.row)){
-            cell.accessoryType = .checkmark
-                }else{
-                    cell.accessoryType = .none
+        if checkmarkArray[indexPath.row] == true {
+                    cell.accessoryType = .checkmark
                 }
+        
+        //下記のコードを用いるとチェックが1つしかつかない
+//        if (checkdoArray.contains(indexPath.row)){
+//            cell.accessoryType = .checkmark
+//                }else{
+//                    cell.accessoryType = .none
+//                }
 
-        time.append(checkdoArray)
+//        time.append(checkdoArray)
         return cell
     }
     
@@ -136,8 +164,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         if editingStyle == .delete{
             let objs: Results<Schedule> = realm.objects(Schedule.self)
             let schedule = objs[self.index!]
-            let time3 = Sum()
-            //            time3.title = TextField.text
+            
             let time = schedule.all
             let obj = time[indexPath.row]
             // アイテム削除処理
@@ -166,7 +193,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                 self.realm.add(sum)
                 time.append(sum)
             }
-//            self.allArray.append(time)
             self.table.reloadData()
         }
         alert.addTextField {
@@ -180,21 +206,19 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("+ボタンが押された")
     }
     
-    @IBAction func PlayBarButtonTapped(_ sender: UIBarButtonItem) {
-        drawChart()
-    }
+   
     
-    @objc func touchUpButtonDraw(){
-        drawChart()
-        
-        print("グラフ表示ボタンが押された!")
-    }
+//    @objc func touchUpButtonDraw(){
+//
+//
+//        print("グラフ表示ボタンが押された!")
+//    }
     /**
      グラフを表示
      */
     private func drawChart(){
-        //        let rate = Double(textRate.text!)
-        //        chartView.drawChart(rate: rate!)
+        let rate = Double( (number / checkcount) / 100)
+        chartView.drawChart(rate: rate)
     }
     //    キーボードずらし
     func configureObserver() {

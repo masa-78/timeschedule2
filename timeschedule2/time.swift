@@ -17,7 +17,7 @@ class Schedule: Object{
 }
 
 class Sum: Object{
-    @objc dynamic var total = ""//2画面
+    @objc dynamic var total = ""//チェック
     @objc dynamic var title = ""//初期の値
 }
 

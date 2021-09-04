@@ -21,8 +21,9 @@ class ChartView: UIView {
         caBasicAnimation.fromValue = 0.0
         caBasicAnimation.toValue = 1.0
         caShapeLayerForValue.add(caBasicAnimation, forKey: "chartAnimation")
-        
+    
 //        self.ChartView.centerText = "テストデータ"
+    
     }
     //    奥の円
 //    private func drawBaseChart(){
