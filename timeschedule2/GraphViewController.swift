@@ -19,9 +19,8 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
-    
     var checkmarkArray: [Bool] = []
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,16 +148,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                     cell.accessoryType = .checkmark
                 }
         
-        //下記のコードを用いるとチェックが1つしかつかない
-//        if (checkdoArray.contains(indexPath.row)){
-//            cell.accessoryType = .checkmark
-//                }else{
-//                    cell.accessoryType = .none
-//                }
-
-//        time.append(checkdoArray)
         return cell
     }
+    
+//    extension Array {
+//        subscript (safe index: Index) -> Element? {
+//            return indices.contains(index) ? self[index] : nil
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{

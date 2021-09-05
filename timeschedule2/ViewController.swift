@@ -12,13 +12,11 @@ import RealmSwift
 class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSource{
     
     var scheduleArray:Results<Schedule>!
-    
     var addBarButtonItem: UIBarButtonItem!
     
     let realm = try! Realm()
     
     var plan: [String:[String]] = [:]
-    
     var selected: Int!
     
     @IBOutlet var table: UITableView!
@@ -47,11 +45,11 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         table.dataSource = self
         table.delegate = self
         
-        if plan.isEmpty {
-            print("plan dictionary is empty.")
-        } else {
-            print("plan dictionary is not empty.")
-        }
+//        if plan.isEmpty {
+//            print("plan dictionary is empty.")
+//        } else {
+//            print("plan dictionary is not empty.")
+//        }
     }
     
     override func didReceiveMemoryWarning() {

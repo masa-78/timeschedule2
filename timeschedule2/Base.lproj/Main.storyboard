@@ -114,18 +114,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e72-sG-q17">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="cDk-tm-0Hn">
-                                <connections>
-                                    <action selector="addBarButtonTapped:" destination="KCh-vg-JJE" id="fRo-21-af0"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="play" id="Efh-d1-iyM">
-                                <connections>
-                                    <action selector="PlayBarButtonTapped:" destination="KCh-vg-JJE" id="Lky-qo-AhU"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cDk-tm-0Hn">
+                            <connections>
+                                <action selector="addBarButtonTapped:" destination="KCh-vg-JJE" id="fRo-21-af0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chartView" destination="o3J-BK-Ff5" id="aJJ-dD-ihv"/>
