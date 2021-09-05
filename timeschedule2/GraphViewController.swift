@@ -42,9 +42,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         // Do any additional setup after loading the view.
      
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
-        for _ in 0 ... allArray.count - 1 {
-                   checkmarkArray.append(false)
-               }
             UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
                    } else {
                        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
@@ -150,15 +147,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         if checkmarkArray[indexPath.row] == true {
                     cell.accessoryType = .checkmark
                 }
-       
+        for _ in 0 ... allArray.count - 1 {
+                   checkmarkArray.append(false)
+               }
+
         return cell
     }
     
-//    extension Array {
-//        subscript (safe index: Index) -> Element? {
-//            return indices.contains(index) ? self[index] : nil
-//        }
-//    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
@@ -272,6 +268,11 @@ extension Array {
         return indices.contains(index) ? self[index] : nil
     }
 }
+//extension Array {
+//    subscript (safe index: Index) -> Element? {
+//        return indices.contains(index) ? self[index] : nil
+//    }
+//}
 /*
  // MARK: - Navigation
  
