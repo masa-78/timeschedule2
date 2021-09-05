@@ -23,8 +23,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         scheduleArray = realm.objects(Schedule.self)
         let schedule: Schedule? = read()
         titleTextField.text = schedule?.day
-        
-
+  
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

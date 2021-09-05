@@ -20,7 +20,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var index: Int?
     var allArray: Results<Sum>!
     var checkmarkArray: [Bool] = []
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +38,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         table.delegate = self
         
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
-        //        drawChart()
+          //      drawChart()
         // Do any additional setup after loading the view.
      
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
@@ -144,10 +144,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             print("値が代入されていません")
         }
         cell.textLabel?.text = time[indexPath.row].title
+        
+        
+        //エラー箇所
         if checkmarkArray[indexPath.row] == true {
                     cell.accessoryType = .checkmark
                 }
-        
+       
         return cell
     }
     
@@ -261,6 +264,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             print("値が代入されていません")
         }
         return true
+    }
+}
+extension Array {
+    subscript (safe index: Index) -> Element? {
+        //indexが配列内なら要素を返し、配列外ならnilを返す（三項演算子）
+        return indices.contains(index) ? self[index] : nil
     }
 }
 /*
