@@ -76,6 +76,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     }
     var number: Int = 0
     var checkcount: Int = 0
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
@@ -147,6 +148,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         if checkmarkArray[indexPath.row] == true {
                     cell.accessoryType = .checkmark
                 }
+        
         for _ in 0 ... allArray.count - 1 {
                    checkmarkArray.append(false)
                }

@@ -14,7 +14,6 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
     var date: Schedule!
     
     let realm = try! Realm()
-    var dic: [String:String] = [:]
     var scheduleArray: Results<Schedule>!
     
     override func awakeFromNib() {
@@ -23,7 +22,6 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate{
         scheduleArray = realm.objects(Schedule.self)
         let schedule: Schedule? = read()
         titleTextField.text = schedule?.day
-  
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
