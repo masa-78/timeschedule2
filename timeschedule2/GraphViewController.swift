@@ -143,15 +143,19 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         }
         cell.textLabel?.text = time[indexPath.row].title
         
+        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
+            
+            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
         
-        //エラー箇所
-        if checkmarkArray[indexPath.row] == true {
-                    cell.accessoryType = .checkmark
-                }
-        
-        for _ in 0 ... allArray.count - 1 {
-                   checkmarkArray.append(false)
-               }
+        }else{
+            checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+           
+            if checkmarkArray[indexPath.row] == true {
+                        cell.accessoryType = .checkmark
+            }else {
+                
+            }
+        }
 
         return cell
     }
@@ -202,6 +206,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         present(alert, animated: true, completion: nil)
         
         print("+ボタンが押された")
+        checkmarkArray.append(false)
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+        print(checkmarkArray)
     }
     
    
