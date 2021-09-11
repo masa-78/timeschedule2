@@ -29,7 +29,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
         allArray = realm.objects(Sum.self)
-//        checkdoArray = realm.objects(Sum.self)
         print(allArray!)
  
         changeScreen()
@@ -38,15 +37,14 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         table.delegate = self
         
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
-          //      drawChart()
+         //   drawChart()
         // Do any additional setup after loading the view.
      
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
             UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
                    } else {
-                       checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
         }
- 
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -82,7 +80,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         
         let cell = tableView.cellForRow(at:indexPath)
         checkcount = allArray.count
-        
         checkmarkArray[indexPath.row] = changeBool(value: checkmarkArray[indexPath.row])
         UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
         
@@ -108,7 +105,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
           } else {
               return true
           }
-      }
+    }
 
     private func changeScreen(){
         let screenSize: CGRect = UIScreen.main.bounds
@@ -120,7 +117,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             drawWidth = heightValue * 0.8
         }
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         if let index = index {
@@ -145,7 +141,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
             
-            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+           UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
         
         }else{
             checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
@@ -156,12 +152,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
                 
             }
         }
-
         return cell
     }
-    
-    
-    
+  
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let objs: Results<Schedule> = realm.objects(Schedule.self)
@@ -172,7 +165,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             // アイテム削除処理
             
             try! realm.write(){
-                //              timeArray.remove(at: indexPath.row)
                 let item = (allArray[indexPath.row])
                 realm.delete(item)
             }
@@ -181,6 +173,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         self.table.reloadData()
     }
     
+    @IBAction func playBarButtonTapped(_ sender: UIBarButtonItem) {
+        drawChart()
+    }
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         var textField = UITextField()
@@ -210,9 +205,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
         print(checkmarkArray)
     }
-    
-   
-    
+
 //    @objc func touchUpButtonDraw(){
 //
 //
@@ -224,6 +217,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     private func drawChart(){
         let rate = Double( (number / checkcount) / 100)
         chartView.drawChart(rate: rate)
+//        if checkcount > 0 {
+//            drawChart()
+//        } else {
+//
+//        }
     }
     //    キーボードずらし
     func configureObserver() {
@@ -271,17 +269,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         return true
     }
 }
-extension Array {
-    subscript (safe index: Index) -> Element? {
-        //indexが配列内なら要素を返し、配列外ならnilを返す（三項演算子）
-        return indices.contains(index) ? self[index] : nil
-    }
-}
 //extension Array {
 //    subscript (safe index: Index) -> Element? {
+//        //indexが配列内なら要素を返し、配列外ならnilを返す（三項演算子）
 //        return indices.contains(index) ? self[index] : nil
 //    }
 //}
+
 /*
  // MARK: - Navigation
  

@@ -44,12 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         
         table.dataSource = self
         table.delegate = self
-        
-//        if plan.isEmpty {
-//            print("plan dictionary is empty.")
-//        } else {
-//            print("plan dictionary is not empty.")
-//        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,7 +106,6 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
                 realm.delete(item)
             }
         }
-        
         // TableViewを再読み込み.
         self.table.reloadData()
     }
