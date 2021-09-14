@@ -19,7 +19,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var allArray: Results<Sum>!
-    var checkmarkArray: [Bool] = []
+    var checkmarkArray: [[Bool]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
             UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
                    } else {
-        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
         }
     }
     
@@ -151,9 +151,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
 //            let getCount: [[Bool]] = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
 //            print(getCount)
         }else{
-            checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+            checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
            
-            if checkmarkArray[indexPath.row] == true {
+            if checkmarkArray[[indexPath.row]] == true {
                         cell.accessoryType = .checkmark
             } else {
                 
