@@ -133,22 +133,29 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].all
         if let index = index {
+            if time.isEmpty == false {
+                cell.textLabel?.text = time[indexPath.row].title
+            } else {
+                
+            }
             print(index)
-        } else {
+            } else {
             print("値が代入されていません")
         }
-        cell.textLabel?.text = time[indexPath.row].title
         
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
             
            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+           
         
+//            let getCount: [[Bool]] = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+//            print(getCount)
         }else{
             checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
            
             if checkmarkArray[indexPath.row] == true {
                         cell.accessoryType = .checkmark
-            }else {
+            } else {
                 
             }
         }
