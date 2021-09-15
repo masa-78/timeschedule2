@@ -21,6 +21,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var allArray: Results<Sum>!
     var checkmarkArray: [[Bool]] = [[]]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,11 +40,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
          //   drawChart()
         // Do any additional setup after loading the view.
-     
+        var checkArray = checkmarkArray[index!]
+        checkArray.append(false)
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
-            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+            UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
                    } else {
-        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+        checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
         }
     }
     
@@ -80,8 +82,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         
         let cell = tableView.cellForRow(at:indexPath)
         checkcount = allArray.count
-        checkmarkArray[indexPath.row] = changeBool(value: checkmarkArray[indexPath.row])
-        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+        var checkArray = checkmarkArray[index!]
+        checkArray[indexPath.row] = changeBool(value: checkArray[indexPath.row])
+        UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
         
         if(cell?.accessoryType == UITableViewCell.AccessoryType.none){
             cell?.accessoryType = .checkmark
@@ -132,6 +135,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath as IndexPath)
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].all
+        var checkArray = checkmarkArray[index!]
         if let index = index {
             if time.isEmpty == false {
                 cell.textLabel?.text = time[indexPath.row].title
@@ -145,15 +149,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         
         if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
             
-           UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+           UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
            
-        
-//            let getCount: [[Bool]] = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
-//            print(getCount)
         }else{
-            checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+            checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
            
-            if checkmarkArray[[indexPath.row]] == true {
+            if checkArray[indexPath.row] == true {
                         cell.accessoryType = .checkmark
             } else {
                 
@@ -208,9 +209,10 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         present(alert, animated: true, completion: nil)
         
         print("+ボタンが押された")
-        checkmarkArray.append(false)
-        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
-        print(checkmarkArray)
+        var checkArray = checkmarkArray[index!]
+        checkArray.append(false)
+        UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
+        print(checkArray)
     }
 
 //    @objc func touchUpButtonDraw(){
