@@ -105,7 +105,7 @@
                         <viewLayoutGuide key="safeArea" id="Ogh-EH-av2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="height" secondItem="P0A-aG-uYH" secondAttribute="height" multiplier="0.5" id="MwU-JB-vTb"/>
+                            <constraint firstItem="o3J-BK-Ff5" firstAttribute="height" secondItem="P0A-aG-uYH" secondAttribute="height" multiplier="0.6" id="MwU-JB-vTb"/>
                             <constraint firstItem="Jl0-T2-8qG" firstAttribute="trailing" secondItem="Ogh-EH-av2" secondAttribute="trailing" id="haX-Jv-sBb"/>
                             <constraint firstItem="Jl0-T2-8qG" firstAttribute="bottom" secondItem="Ogh-EH-av2" secondAttribute="bottom" constant="5" id="j5f-If-AMK"/>
                             <constraint firstItem="Jl0-T2-8qG" firstAttribute="leading" secondItem="Ogh-EH-av2" secondAttribute="leading" id="lHZ-ZJ-EkO"/>

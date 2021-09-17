@@ -18,9 +18,12 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var outputValue : String?
     var resultHandler: ((String) -> Void)?
     var index: Int?
-    var allArray: Results<Sum>!
     var checkmarkArray: [[Bool]] = [[]]
+//    var doneCounterArray: [[Bool]] = [[]]
     
+    var doneCounter: Int = 0
+    
+    var toDoCounter: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +32,6 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
 //        buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
         self.view.addSubview(buttonDraw)
         self.view.addSubview(chartView)
-        allArray = realm.objects(Sum.self)
-        print(allArray!)
  
         changeScreen()
         table.register(UINib(nibName: "CustomTableViewCell", bundle:   nil),forCellReuseIdentifier:"CustomTableViewCell")
@@ -40,13 +41,13 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
          //   drawChart()
         // Do any additional setup after loading the view.
-        var checkArray = checkmarkArray[index!]
-        checkArray.append(false)
-        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
-            UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
-                   } else {
-        checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
-        }
+//        var checkArray = checkmarkArray[index!]
+//        checkArray.append(false)
+//        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
+//            UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
+//                   } else {
+//        checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
+//        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -74,29 +75,33 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    var number: Int = 0
-    var checkcount: Int = 0
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
         let cell = tableView.cellForRow(at:indexPath)
-        checkcount = allArray.count
-        var checkArray = checkmarkArray[index!]
-        checkArray[indexPath.row] = changeBool(value: checkArray[indexPath.row])
-        UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
+        
+        var checkMarkNow: [Bool] = checkmarkArray[index!]
+//        var donecounterNow: [Bool] = doneCounterArray[index!]
+        print(checkMarkNow)
+//        print(donecounterNow)
+        checkMarkNow[indexPath.row] = changeBool(value: checkMarkNow[indexPath.row])
+//        donecounterNow[indexPath.row] = changeBool(value: donecounterNow[indexPath.row])
+        checkmarkArray[index!] = checkMarkNow
+        
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
         
         if(cell?.accessoryType == UITableViewCell.AccessoryType.none){
             cell?.accessoryType = .checkmark
-            number = number + 1
+           doneCounter += 1
+            
         }else{
             cell?.accessoryType = .none
-            number = number - 1
+            doneCounter -= 1
         }
-        drawChart()
+   
         // セルを選択した時の背景の変化を遅くする
         tableView.deselectRow(at: indexPath, animated: true)
-        print("チェックされた")
       
         // チェック状態を反転してリロードする
                 table.reloadData()
@@ -121,45 +126,32 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         let objs: Results<Schedule> = realm.objects(Schedule.self)
-        if let index = index {
-            print(index)
-            let time = objs[index].all
-        } else {
-            print("値が代入されていません")
-        }
-        return allArray.count
+        let time = objs[index!].all
+        
+        return time.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath as IndexPath)
         let objs: Results<Schedule> = realm.objects(Schedule.self)
         let time = objs[index!].all
-        var checkArray = checkmarkArray[index!]
-        if let index = index {
+        
             if time.isEmpty == false {
                 cell.textLabel?.text = time[indexPath.row].title
-            } else {
                 
-            }
-            print(index)
-            } else {
-            print("値が代入されていません")
-        }
-        
-        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
-            
-           UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
-           
-        }else{
-            checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
-           
-            if checkArray[indexPath.row] == true {
-                        cell.accessoryType = .checkmark
-            } else {
+                checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
                 
+                let checkMarkNow: [Bool] = checkmarkArray[index!]
+                
+                if checkMarkNow[indexPath.row] == true {
+                    cell.accessoryType = .checkmark
+                } else {
+                    
+                }
             }
-        }
         return cell
     }
   
@@ -171,11 +163,11 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             let time = schedule.all
             let obj = time[indexPath.row]
             // アイテム削除処理
-            
-            try! realm.write(){
-                let item = (allArray[indexPath.row])
-                realm.delete(item)
-            }
+//            
+//            try! realm.write(){
+//                let item = (allArray[indexPath.row])
+//                realm.delete(item)
+//            }
         }
         // TableViewを再読み込み.
         self.table.reloadData()
@@ -186,17 +178,19 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     }
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let time = objs[index!].all
         var textField = UITextField()
         let alert = UIAlertController(title: "新しいアイテム追加", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "リストに追加", style: .default) {(action) in
             
-            let schedule = objs[self.index!]
-            let time = schedule.all
+//            let schedule = objs[self.index!]
+//            let time = schedule.all
             let sum = Sum()
             sum.title = textField.text!
             try! self.realm.write {
                 self.realm.add(sum)
                 time.append(sum)
+                print("sum",sum)
             }
             self.table.reloadData()
         }
@@ -209,28 +203,25 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         present(alert, animated: true, completion: nil)
         
         print("+ボタンが押された")
-        var checkArray = checkmarkArray[index!]
-        checkArray.append(false)
-        UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
-        print(checkArray)
+        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+        checkmarkArray[index!].append(false)
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+        print("今見たいところです！",checkmarkArray)
     }
 
-//    @objc func touchUpButtonDraw(){
-//
-//
-//        print("グラフ表示ボタンが押された!")
-//    }
     /**
      グラフを表示
      */
     private func drawChart(){
-        let rate = Double( (number / checkcount) / 100)
+        let objs: Results<Schedule> = realm.objects(Schedule.self)
+        let time = objs[index!].all
+        toDoCounter = time.count
+        print("todocount",toDoCounter)
+        print("done",doneCounter)
+        let rate = (Double(doneCounter) / Double(toDoCounter) * 100)
+        print(doneCounter / toDoCounter)
         chartView.drawChart(rate: rate)
-//        if checkcount > 0 {
-//            drawChart()
-//        } else {
-//
-//        }
+        print("rate",rate)
     }
     //    キーボードずらし
     func configureObserver() {

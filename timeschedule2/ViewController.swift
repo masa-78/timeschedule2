@@ -19,6 +19,9 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
     var plan: [String:[String]] = [:]
     var selected: Int!
     
+    var checkmarkArray: [[Bool]] = [[]]
+//    var doneCounterArray: [[Bool]] = [[]]
+    
     @IBOutlet var table: UITableView!
 
     override func viewDidLoad() {
@@ -82,6 +85,23 @@ class ViewController: UIViewController, UITableViewDelegate , UITableViewDataSou
         print(scheduleArray.count)
         self.table.reloadData()
         print("【+】ボタンが押された!")
+        
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+        
+        checkmarkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+        
+        checkmarkArray.append([])
+        
+//        UserDefaults.standard.set(doneCounterArray, forKey: "checkmarkarray")
+//
+//        UserDefaults.standard.set(doneCounterArray, forKey: "checkmarkarray")
+//
+//        doneCounterArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [[Bool]]
+//
+//        doneCounterArray.append([])
+        
+        UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkarray")
+//        UserDefaults.standard.set(doneCounterArray, forKey: "checkmarkarray")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
