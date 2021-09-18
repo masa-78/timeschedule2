@@ -19,7 +19,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     var resultHandler: ((String) -> Void)?
     var index: Int?
     var checkmarkArray: [[Bool]] = [[]]
-//    var doneCounterArray: [[Bool]] = [[]]
+    var doneCounterArray: [[Bool]] = [[]]
     
     var doneCounter: Int = 0
     
@@ -27,10 +27,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        buttonDraw.setTitleColor(UIColor.blue, for: .normal)
-//        buttonDraw.addTarget(self, action: #selector(self.touchUpButtonDraw), for: .touchUpInside)
-        self.view.addSubview(buttonDraw)
+ 
         self.view.addSubview(chartView)
  
         changeScreen()
@@ -39,15 +36,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         table.delegate = self
         
         print("User Realm User file location: \(realm.configuration.fileURL!.path)")
-         //   drawChart()
+        
         // Do any additional setup after loading the view.
-//        var checkArray = checkmarkArray[index!]
-//        checkArray.append(false)
-//        if UserDefaults.standard.array(forKey: "checkmarkarray") == nil {
-//            UserDefaults.standard.set(checkArray, forKey: "checkmarkarray")
-//                   } else {
-//        checkArray = UserDefaults.standard.array(forKey: "checkmarkarray") as! [Bool]
-//        }
+
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -55,7 +46,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         coordinator.animate(
             alongsideTransition: nil,
             completion: {(UIViewControllerTransitionCoordinatorContext) in
-                self.changeScreen()}
+                self.changeScreen()
+                
+            }
         )
     }
     
@@ -82,9 +75,9 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
         let cell = tableView.cellForRow(at:indexPath)
         
         var checkMarkNow: [Bool] = checkmarkArray[index!]
-//        var donecounterNow: [Bool] = doneCounterArray[index!]
+        var donecounterNow: [Bool] = doneCounterArray[index!]
         print(checkMarkNow)
-//        print(donecounterNow)
+        print(donecounterNow)
         checkMarkNow[indexPath.row] = changeBool(value: checkMarkNow[indexPath.row])
 //        donecounterNow[indexPath.row] = changeBool(value: donecounterNow[indexPath.row])
         checkmarkArray[index!] = checkMarkNow
@@ -162,12 +155,7 @@ class GraphViewController: UIViewController, UITextFieldDelegate, UITableViewDat
             
             let time = schedule.all
             let obj = time[indexPath.row]
-            // アイテム削除処理
-//            
-//            try! realm.write(){
-//                let item = (allArray[indexPath.row])
-//                realm.delete(item)
-//            }
+
         }
         // TableViewを再読み込み.
         self.table.reloadData()
